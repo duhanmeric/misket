@@ -83,12 +83,19 @@ module.exports = {
   async verification(req, res) {
     try {
       const { confirmationTicket } = req.params;
-      const { ticket } = await Ticket.findOne({
+      const { ticket, UserId } = await Ticket.findOne({
         where: {
           ticket: confirmationTicket,
         },
       });
-      res.send(ticket);
+      const activatedUser = await User.findOne({
+        where: {
+          id: UserId,
+        },
+      });
+      activatedUser.isActive = true;
+      await activatedUser.save();
+      res.send({ ticket, userInfo: { data: activatedUser.isActive } });
     } catch (error) {
       console.log(error);
     }

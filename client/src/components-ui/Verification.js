@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Redirect } from "react-router-dom";
 import axios from "axios";
 
 export default function Verification() {
@@ -8,12 +8,13 @@ export default function Verification() {
   useEffect(() => {
     axios
       .get(`http://localhost:5000/api/verification/${confirmationTicket}`)
-      .then((res) => console.log(res));
+      .then((res) => {
+        console.log(res.data);
+        setIsActivated(res.data.userInfo.data);
+      });
   });
 
   return (
-    <div>
-      <div>Hesabınız aktif ediliyor</div>
-    </div>
+    <div>{!isActivated ? <div>Loading</div> : <Redirect to="/login" />}</div>
   );
 }
