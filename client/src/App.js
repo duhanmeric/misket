@@ -6,6 +6,7 @@ import Register from "./components-ui/Register";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { UserContext } from "./UserProvider";
 import { useState } from "react";
+import Verification from "./components-ui/Verification";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -19,6 +20,10 @@ function App() {
             <Route path="/login" exact component={Login} />
             <Route path="/register" exact component={Register} />
             <Route path="/dashboard/:username" component={Profile} />
+            <Route
+              path="/verification/:confirmationTicket"
+              component={Verification}
+            />
           </Switch>
         </div>
       </Router>
