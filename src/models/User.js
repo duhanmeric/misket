@@ -1,18 +1,15 @@
 const bcrypt = require("bcrypt");
 
-function hashPassword(user, options) {
+async function hashPassword(user, options) {
   const SALT_FACTOR = 8;
 
   if (!user.changed("password")) {
     return;
   }
 
-  return bcrypt
-    .genSalt(SALT_FACTOR)
-    .then((salt) => bcrypt.hash(user.password, salt, null))
-    .then((hash) => {
-      user.setDataValue("password", hash);
-    });
+  const salt = await bcrypt.genSalt(SALT_FACTOR);
+  const hash = await bcrypt.hash(user.password, salt, null);
+  user.setDataValue("password", hash);
 }
 
 module.exports = (sequelize, DataTypes) => {
@@ -33,6 +30,17 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         unique: true,
       },
+      photoURL: {
+        type: DataTypes.STRING,
+        allowNull: true,
+        unique: false,
+        defaultValue: "https://i.hizliresim.com/AXt9tf.png",
+      },
+      isActive: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: false,
+      },
     },
     {
       hooks: {
@@ -41,6 +49,10 @@ module.exports = (sequelize, DataTypes) => {
       },
     }
   );
+
+  User.associate = function (models) {
+    User.hasOne(models.Ticket);
+  };
 
   User.prototype.comparePassword = function (password) {
     return bcrypt.compareAsync(password, this.password);

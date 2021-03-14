@@ -1,6 +1,8 @@
 const { User } = require("../models");
+const { Ticket } = require("../models");
 const jwt = require("jsonwebtoken");
 const config = require("../config/config");
+const crypto = require("crypto");
 
 jwtSignUser = (user) => {
   const ONE_WEEK = 60 * 60 * 24 * 7;
@@ -25,11 +27,21 @@ module.exports = {
 
   async register(req, res) {
     try {
-      console.log(req.body);
+      const { email, username, password } = req.body;
+      const confirmationTicket = crypto.randomBytes(20).toString("hex");
       const user = await User.create({
-        email: req.body.email,
-        username: req.body.username,
-        password: req.body.password,
+        email: email,
+        username: username,
+        password: password,
+      });
+      const { id } = await User.findOne({
+        where: {
+          email: email,
+        },
+      });
+      await Ticket.create({
+        ticket: confirmationTicket,
+        UserId: id,
       });
       const userJson = user.toJSON();
       res.send({ user: userJson, token: jwtSignUser(userJson) });
