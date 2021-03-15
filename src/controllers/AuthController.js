@@ -15,6 +15,7 @@ jwtSignUser = (user) => {
 module.exports = {
   async login(req, res) {
     try {
+      console.log(req.body);
       const { userEmail, userPassword } = req.body;
       const user = await User.findOne({
         where: {

@@ -2,9 +2,11 @@ import { Link, Redirect } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../UserProvider";
 
-export default function Sidebar({ handleContent }) {
+export default function Sidebar() {
   const { user, setUser, token, setToken } = useContext(UserContext);
   const [redirect, setRedirect] = useState(null);
+  const [projectList, setProjectList] = useState([]);
+  const [id, setId] = useState(0);
 
   useEffect(() => {
     if (!user) {
@@ -22,6 +24,18 @@ export default function Sidebar({ handleContent }) {
     console.log(user, token);
     localStorage.removeItem("user");
     localStorage.removeItem("token");
+  };
+
+  const handleAddProject = () => {
+    setProjectList([
+      ...projectList,
+      {
+        id: id,
+        title: "untitled",
+      },
+    ]);
+    console.log(projectList);
+    setId(id + 1);
   };
 
   return (
@@ -42,7 +56,19 @@ export default function Sidebar({ handleContent }) {
       <div className="current-projects">
         <div className="current-projects-title">Projects</div>
         <ul className="list-unstyled mt-1">
-          <button className="add-project" onClick={() => null}>
+          {projectList.map((project) => (
+            <li key={project.id} className="project-list-item">
+              <div className="project-icon">
+                <i className="far fa-file-alt"></i>
+              </div>
+              <div className="project-list-title">{project.title}</div>
+            </li>
+          ))}
+          <button
+            className="add-project"
+            disabled={projectList.length >= 7}
+            onClick={() => handleAddProject()}
+          >
             <i className="fas fa-plus"></i>
             <div className="add-project-title">Add Project</div>
           </button>

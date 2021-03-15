@@ -2,11 +2,12 @@ import { useEffect, useRef, useContext, useState } from "react";
 import axios from "axios";
 import { UserContext } from "../UserProvider";
 import { Redirect } from "react-router-dom";
+import AuthService from "../services/AuthService";
 
 export default function Login() {
   const email = useRef(null);
   const password = useRef(null);
-  const { user, setUser, token, setToken } = useContext(UserContext);
+  const { user, setUser, setToken } = useContext(UserContext);
   const [redirect, setRedirect] = useState(null);
 
   useEffect(() => {
@@ -21,7 +22,7 @@ export default function Login() {
   }
 
   const handleReq = async () => {
-    const res = await axios.post("http://localhost:5000/api/login", {
+    const res = await AuthService.login({
       userEmail: email.current.value,
       userPassword: password.current.value,
     });
@@ -30,11 +31,16 @@ export default function Login() {
       setUser(res.data.user);
       setToken(res.data.token);
       localStorage.setItem("token", res.data.token);
-      localStorage.setItem("user", JSON.stringify(res.data.user));
+      localStorage.setItem(
+        "user",
+        JSON.stringify({
+          email: res.data.user.email,
+          username: res.data.user.username,
+          photoURL: res.data.user.photoURL,
+        })
+      );
     }
   };
-
-  // contexte user'ı ver handlereq'ten sonra
 
   return (
     <div className="container d-flex flex-column w-50">
