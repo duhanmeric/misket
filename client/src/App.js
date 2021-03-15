@@ -5,14 +5,29 @@ import Login from "./components-ui/Login";
 import Register from "./components-ui/Register";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { UserContext } from "./UserProvider";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Verification from "./components-ui/Verification";
 
+const getTokenFromLS = () => {
+  return localStorage.getItem("token");
+};
+
+const getUserFromLS = () => {
+  const userLS = localStorage.getItem("user");
+  return JSON.parse(userLS);
+};
+
 function App() {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(getUserFromLS);
+  const [token, setToken] = useState(getTokenFromLS);
+
+  // useEffect(() => {
+  //   setUser(user);
+  //   setToken(token);
+  // }, [user]);
 
   return (
-    <UserContext.Provider value={user}>
+    <UserContext.Provider value={{ user, setUser, token, setToken }}>
       <Router>
         <div className="App">
           <Switch>

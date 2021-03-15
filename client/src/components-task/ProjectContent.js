@@ -5,7 +5,7 @@ import { useState } from "react";
 
 export default function ProjectContent({ selectedProject }) {
   const [tasks, setTasks] = useState([]);
-  const [filter, setFilter] = useState("active");
+  const [filter, setFilter] = useState("all");
 
   const handleFilter = () => {
     if (filter === "all") {

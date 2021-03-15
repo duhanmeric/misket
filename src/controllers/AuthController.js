@@ -13,14 +13,35 @@ jwtSignUser = (user) => {
 };
 
 module.exports = {
-  login(req, res) {
+  async login(req, res) {
     try {
       const { userEmail, userPassword } = req.body;
-      const user = {
-        userEmail,
-        userPassword,
-      };
-      res.send(user);
+      const user = await User.findOne({
+        where: {
+          email: userEmail,
+        },
+      });
+      if (!user) {
+        return res.status(403).send({
+          error: "The login info is incorrect user not found",
+        });
+      }
+      if (user && !user.isActive) {
+        return res.status(403).send({
+          error: "User is not activated, check out your email.",
+        });
+      }
+      const isPasswordValid = await user.comparePassword(userPassword);
+      if (!isPasswordValid) {
+        return res.status(403).send({
+          error: "Wrong password",
+        });
+      }
+      const userJson = user.toJSON();
+      res.send({
+        user: userJson,
+        token: jwtSignUser(userJson),
+      });
     } catch (error) {
       console.log(error);
     }

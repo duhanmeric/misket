@@ -1,13 +1,44 @@
 import { Link, Redirect } from "react-router-dom";
-// import { useContext, useEffect, useState } from "react";
-// import { UserContext } from "../UserProvider";
+import { useContext, useEffect, useState } from "react";
+import { UserContext } from "../UserProvider";
 
 export default function Sidebar({ handleContent }) {
+  const { user, setUser, token, setToken } = useContext(UserContext);
+  const [redirect, setRedirect] = useState(null);
+
+  useEffect(() => {
+    if (!user) {
+      setRedirect("/");
+    }
+  }, [user]);
+
+  if (redirect) {
+    return <Redirect to={redirect} />;
+  }
+
+  const handleLogOut = () => {
+    setUser(null);
+    setToken(null);
+    console.log(user, token);
+    localStorage.removeItem("user");
+    localStorage.removeItem("token");
+  };
+
   return (
     <div className="sidebar">
       <div className="logo">
         <Link to="/">Home</Link>
       </div>
+      {user ? (
+        <div className="d-flex justify-content-start align-items-center">
+          <img
+            style={{ width: "40px", marginRight: "10px" }}
+            src={user.photoURL}
+          />
+          <div>{user.username}</div>
+        </div>
+      ) : null}
+
       <div className="current-projects">
         <div className="current-projects-title">Projects</div>
         <ul className="list-unstyled mt-1">
@@ -19,7 +50,7 @@ export default function Sidebar({ handleContent }) {
       </div>
       <div className="logout">
         <i className="fas fa-sign-out-alt"></i>
-        <h6 className="logout-btn mb-0" onClick={null}>
+        <h6 className="logout-btn mb-0" onClick={() => handleLogOut()}>
           Logout
         </h6>
       </div>

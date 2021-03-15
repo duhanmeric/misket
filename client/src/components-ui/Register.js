@@ -1,10 +1,24 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useContext, useState } from "react";
 import AuthService from "../services/AuthService";
+import { UserContext } from "../UserProvider";
+import { Redirect } from "react-router-dom";
 
 export default function Login() {
   const email = useRef(null);
   const password = useRef(null);
   const username = useRef(null);
+  const { user } = useContext(UserContext);
+  const [redirect, setRedirect] = useState(null);
+
+  useEffect(() => {
+    if (user) {
+      setRedirect(`/dashboard/${user.username}`);
+    }
+  }, [user]);
+
+  if (redirect) {
+    return <Redirect to={redirect} />;
+  }
 
   const handleReq = () => {
     AuthService.register({
