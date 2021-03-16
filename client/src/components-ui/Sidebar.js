@@ -3,11 +3,10 @@ import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../UserProvider";
 import ProjectService from "../services/ProjectService";
 
-export default function Sidebar() {
+export default function Sidebar({ handleContent }) {
   const { user, setUser, token, setToken } = useContext(UserContext);
   const [redirect, setRedirect] = useState(null);
   const [projectList, setProjectList] = useState([]);
-  const [id, setId] = useState(0);
 
   useEffect(() => {
     if (!user) {
@@ -23,10 +22,8 @@ export default function Sidebar() {
           UserId: user ? user.id : null,
         },
       });
-      // console.log(res.data);
       tempArr = res.data;
       setProjectList(tempArr);
-      // console.log(tempArr);
     };
 
     fetchProjects();
@@ -57,8 +54,6 @@ export default function Sidebar() {
         title: res.data.title,
       },
     ]);
-    // console.log(projectList);
-    // setId(id + 1);
   };
 
   const handleDeleteProject = async (id) => {
@@ -88,7 +83,11 @@ export default function Sidebar() {
         <div className="current-projects-title">Projects</div>
         <ul className="list-unstyled mt-1">
           {projectList.map((project) => (
-            <li key={project.id} className="project-list-item">
+            <li
+              key={project.id}
+              className="project-list-item"
+              onClick={() => handleContent(project)}
+            >
               <div className="project-info">
                 <div className="project-icon">
                   <i className="far fa-file-alt"></i>

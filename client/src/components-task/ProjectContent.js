@@ -18,33 +18,43 @@ export default function ProjectContent({ selectedProject }) {
   };
   return (
     <div className="content">
-      <h2 className="project-title">
-        {selectedProject && selectedProject.title}
-      </h2>
-      <div className="content-list">
-        <div className="card-header">
-          <TaskInput tasks={tasks} setTasks={setTasks} />
-        </div>
-        <div className="card-body">
-          <ul className="list-group task-list">
-            {handleFilter().map((task) => (
-              <SingleTask
-                task={task}
+      {selectedProject ? (
+        <>
+          <h2 className="project-title">
+            {selectedProject && selectedProject.title}
+          </h2>
+          <div className="content-list">
+            <div className="card-header">
+              <TaskInput
                 tasks={tasks}
-                key={task.id}
+                setTasks={setTasks}
+                selectedProject={selectedProject}
+              />
+            </div>
+            <div className="card-body">
+              <ul className="list-group task-list">
+                {handleFilter().map((task) => (
+                  <SingleTask
+                    task={task}
+                    tasks={tasks}
+                    key={task.id}
+                    setTasks={setTasks}
+                  />
+                ))}
+              </ul>
+            </div>
+            <div className="card-footer">
+              <TaskControl
+                filter={filter}
+                setFilter={setFilter}
                 setTasks={setTasks}
               />
-            ))}
-          </ul>
-        </div>
-        <div className="card-footer">
-          <TaskControl
-            filter={filter}
-            setFilter={setFilter}
-            setTasks={setTasks}
-          />
-        </div>
-      </div>
+            </div>
+          </div>
+        </>
+      ) : (
+        <h3 style={{ color: "gray" }}>Nothing to See here...</h3>
+      )}
     </div>
   );
 }

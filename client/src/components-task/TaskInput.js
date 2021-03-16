@@ -1,29 +1,35 @@
 import { useState } from "react";
-export default function TaskInput({ tasks, setTasks }) {
+import TaskService from "../services/TaskService";
+
+export default function TaskInput({ tasks, setTasks, selectedProject }) {
   const [inputText, setInputText] = useState("");
-  const [id, setId] = useState(0);
 
   const handleInputText = (e) => {
     setInputText(e.target.value);
   };
 
-  const addTask = (e) => {
+  const addTask = async (e) => {
     if (inputText === "" || inputText.trim() === "") {
       alert("you entered a empty todo");
       setInputText("");
       return;
     } else if (e.key === "Enter" || e.type === "click") {
       let trimmed = inputText.replace(/\s+/g, " ");
+      const res = await TaskService.addTask({
+        title: trimmed,
+        completed: false,
+        ProjectId: selectedProject.id,
+      });
+      console.log(res.data);
       setTasks([
         ...tasks,
         {
-          id: id,
-          title: trimmed,
+          id: res.data.id,
+          title: res.data.title,
           editing: false,
-          completed: false,
+          completed: res.data.completed,
         },
       ]);
-      setId(id + 1);
       setInputText("");
     }
   };

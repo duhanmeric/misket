@@ -8,6 +8,7 @@ export default function Project() {
   const handleContent = (project) => {
     setSelectedProject(project);
   };
+
   return (
     <div className="dashboard">
       <Sidebar handleContent={handleContent} />

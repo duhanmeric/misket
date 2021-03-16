@@ -1,5 +1,6 @@
 const AuthController = require("./controllers/AuthController.js");
 const ProjectController = require("./controllers/ProjectController.js");
+const TaskController = require("./controllers/TaskController.js");
 
 module.exports = (app) => {
   app.post("/api/login", AuthController.login);
@@ -8,4 +9,5 @@ module.exports = (app) => {
   app.post("/api/create-project", ProjectController.createProject);
   app.get("/api/get-projects", ProjectController.getProjects);
   app.delete("/api/delete-project", ProjectController.deleteProject);
+  app.post("/api/add-task", TaskController.addProject);
 };

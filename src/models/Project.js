@@ -8,5 +8,9 @@ module.exports = (sequelize, DataTypes) => {
     },
   });
 
+  Project.associate = function (models) {
+    Project.hasMany(models.Task);
+  };
+
   return Project;
 };
