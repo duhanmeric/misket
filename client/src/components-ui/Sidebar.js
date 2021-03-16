@@ -15,6 +15,23 @@ export default function Sidebar() {
     }
   }, [user]);
 
+  useEffect(() => {
+    let tempArr = [];
+    const fetchProjects = async () => {
+      const res = await ProjectService.getPost({
+        params: {
+          UserId: user ? user.id : null,
+        },
+      });
+      // console.log(res.data);
+      tempArr = res.data;
+      setProjectList(tempArr);
+      // console.log(tempArr);
+    };
+
+    fetchProjects();
+  }, []);
+
   if (redirect) {
     return <Redirect to={redirect} />;
   }
@@ -33,15 +50,23 @@ export default function Sidebar() {
       UserId: user.id,
     });
     console.log(res.data);
-    // setProjectList([
-    //   ...projectList,
-    //   {
-    //     id: id,
-    //     title: "untitled",
-    //   },
-    // ]);
+    setProjectList([
+      ...projectList,
+      {
+        id: res.data.id,
+        title: res.data.title,
+      },
+    ]);
     // console.log(projectList);
     // setId(id + 1);
+  };
+
+  const handleDeleteProject = async (id) => {
+    const tempProjects = projectList.filter((project) => project.id !== id);
+    setProjectList(tempProjects);
+    await ProjectService.deleteProject({
+      ProjectId: id,
+    });
   };
 
   return (
@@ -64,15 +89,23 @@ export default function Sidebar() {
         <ul className="list-unstyled mt-1">
           {projectList.map((project) => (
             <li key={project.id} className="project-list-item">
-              <div className="project-icon">
-                <i className="far fa-file-alt"></i>
+              <div className="project-info">
+                <div className="project-icon">
+                  <i className="far fa-file-alt"></i>
+                </div>
+                <div className="project-list-title">{project.title}</div>
               </div>
-              <div className="project-list-title">{project.title}</div>
+              <div
+                className="delete-project"
+                onClick={() => handleDeleteProject(project.id)}
+              >
+                <i className="fas fa-trash delete-project-icon"></i>
+              </div>
             </li>
           ))}
           <button
             className="add-project"
-            disabled={projectList.length >= 7}
+            disabled={projectList.length >= 15}
             onClick={() => handleAddProject()}
           >
             <i className="fas fa-plus"></i>

@@ -6,4 +6,6 @@ module.exports = (app) => {
   app.post("/api/register", AuthController.register);
   app.get("/api/verification/:confirmationTicket", AuthController.verification);
   app.post("/api/create-project", ProjectController.createProject);
+  app.get("/api/get-projects", ProjectController.getProjects);
+  app.delete("/api/delete-project", ProjectController.deleteProject);
 };

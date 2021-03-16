@@ -63,15 +63,29 @@ body,
 .project-list-item {
   margin-left: 14px;
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding: 0.2rem 0;
+  padding: 0.3rem 0.2rem;
 }
 
 .project-list-item i {
   margin: 0 12px;
   font-size: 14px;
+}
+
+.project-info{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.delete-project{
+  padding: 0.2rem;
+}
+
+.delete-project:hover{
+  background-color: var(--third-color);
 }
 
 .add-project {
@@ -252,4 +266,3 @@ body,
   outline: none;
   color: white;
 }
-
