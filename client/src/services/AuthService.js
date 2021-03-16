@@ -5,7 +5,6 @@ export default {
     return Api().post("/register", credentials);
   },
   login(credentials) {
-    // console.log(credentials);
     return Api().post("/login", credentials);
   },
   verification() {

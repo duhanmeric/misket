@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       email: {
         type: DataTypes.STRING,
-        unique: false,
+        unique: true,
         allowNull: false,
       },
       password: {
@@ -28,7 +28,7 @@ module.exports = (sequelize, DataTypes) => {
       username: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique: false,
+        unique: true,
       },
       photoURL: {
         type: DataTypes.STRING,
@@ -52,6 +52,7 @@ module.exports = (sequelize, DataTypes) => {
 
   User.associate = function (models) {
     User.hasOne(models.Ticket);
+    User.hasMany(models.Project);
   };
 
   User.prototype.comparePassword = function (password) {

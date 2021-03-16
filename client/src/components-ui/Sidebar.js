@@ -1,6 +1,7 @@
 import { Link, Redirect } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../UserProvider";
+import ProjectService from "../services/ProjectService";
 
 export default function Sidebar() {
   const { user, setUser, token, setToken } = useContext(UserContext);
@@ -26,16 +27,21 @@ export default function Sidebar() {
     localStorage.removeItem("token");
   };
 
-  const handleAddProject = () => {
-    setProjectList([
-      ...projectList,
-      {
-        id: id,
-        title: "untitled",
-      },
-    ]);
-    console.log(projectList);
-    setId(id + 1);
+  const handleAddProject = async () => {
+    const res = await ProjectService.createPost({
+      title: "untitled",
+      UserId: user.id,
+    });
+    console.log(res.data);
+    // setProjectList([
+    //   ...projectList,
+    //   {
+    //     id: id,
+    //     title: "untitled",
+    //   },
+    // ]);
+    // console.log(projectList);
+    // setId(id + 1);
   };
 
   return (
