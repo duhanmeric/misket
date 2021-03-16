@@ -6,6 +6,12 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: "Untitled",
       unique: false,
     },
+    editing: {
+      type: DataTypes.BOOLEAN,
+      unique: false,
+      allowNull: false,
+      defaultValue: false,
+    },
   });
 
   Project.associate = function (models) {

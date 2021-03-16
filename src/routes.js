@@ -10,4 +10,7 @@ module.exports = (app) => {
   app.get("/api/get-projects", ProjectController.getProjects);
   app.delete("/api/delete-project", ProjectController.deleteProject);
   app.post("/api/add-task", TaskController.addProject);
+  app.get("/api/get-tasks", TaskController.getTasks);
+  app.delete("/api/delete-task", TaskController.deleteTask);
+  app.patch("/api/change-task", TaskController.changeTask);
 };

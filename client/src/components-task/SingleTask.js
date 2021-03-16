@@ -1,17 +1,24 @@
 import { useRef, useEffect } from "react";
+import TaskService from "../services/TaskService";
 
 export default function Task({ tasks, task, setTasks, handleFilter }) {
   let clickRef = useRef();
 
-  const handleDelete = (task) => {
+  const handleDelete = async (task) => {
     const tempTasks = tasks.filter((tempTask) => tempTask !== task);
     setTasks(tempTasks);
+    await TaskService.deleteTask({
+      id: task.id,
+    });
   };
 
-  const handleChange = (updatedTask, e) => {
+  const handleChange = async (checkingTask, e) => {
+    const res = await TaskService.changeTask({
+      checkingTaskId: checkingTask.id,
+    });
     let updated = tasks.map((task) => {
-      if (task.id === updatedTask.id) {
-        task.completed = e.target.checked;
+      if (task.id === checkingTask.id) {
+        task.completed = res.data.completed;
       }
       return task;
     });
@@ -19,6 +26,7 @@ export default function Task({ tasks, task, setTasks, handleFilter }) {
   };
 
   const handleEditing = (editingTask) => {
+    console.log(editingTask);
     let updated = tasks.map((task) => {
       if (task.id === editingTask.id) {
         task.editing = true;

@@ -1,11 +1,27 @@
 import TaskInput from "./TaskInput";
 import SingleTask from "./SingleTask";
 import TaskControl from "./TaskControl";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import TaskService from "../services/TaskService";
 
 export default function ProjectContent({ selectedProject }) {
   const [tasks, setTasks] = useState([]);
   const [filter, setFilter] = useState("all");
+
+  useEffect(() => {
+    let tempArr = [];
+    const fetchTasks = async () => {
+      const res = await TaskService.getTasks({
+        params: {
+          ProjectId: selectedProject ? selectedProject.id : null,
+        },
+      });
+      tempArr = res.data;
+      setTasks(tempArr);
+    };
+
+    fetchTasks();
+  }, [selectedProject]);
 
   const handleFilter = () => {
     if (filter === "all") {
