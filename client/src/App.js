@@ -1,5 +1,5 @@
 import "./App.css";
-import Profile from "./components-task/Profile";
+import Dashboard from "./components-task/Dashboard";
 import Home from "./components-ui/Home";
 import Login from "./components-ui/Login";
 import Register from "./components-ui/Register";
@@ -21,11 +21,6 @@ function App() {
   const [user, setUser] = useState(getUserFromLS);
   const [token, setToken] = useState(getTokenFromLS);
 
-  // useEffect(() => {
-  //   setUser(user);
-  //   setToken(token);
-  // }, [user]);
-
   return (
     <UserContext.Provider value={{ user, setUser, token, setToken }}>
       <Router>
@@ -34,7 +29,7 @@ function App() {
             <Route path="/" exact component={Home} />
             <Route path="/login" exact component={Login} />
             <Route path="/register" exact component={Register} />
-            <Route path="/dashboard/:username" component={Profile} />
+            <Route path="/dashboard/:username" component={Dashboard} />
             <Route
               path="/verification/:confirmationTicket"
               component={Verification}

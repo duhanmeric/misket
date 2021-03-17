@@ -1,4 +1,18 @@
-export default function TaskControl({ filter, setFilter, setTasks }) {
+import TaskService from "../services/TaskService";
+
+export default function TaskControl({
+  filter,
+  setFilter,
+  setTasks,
+  selectedContent,
+}) {
+  const handleClear = async () => {
+    setTasks([]);
+    await TaskService.deleteTask({
+      ProjectId: selectedContent,
+    });
+  };
+
   return (
     <>
       <div className="filter-group">
@@ -21,7 +35,7 @@ export default function TaskControl({ filter, setFilter, setTasks }) {
           Done
         </button>
       </div>
-      <button className="clear-btn" onClick={() => setTasks([])}>
+      <button className="clear-btn" onClick={() => handleClear()}>
         Clear
       </button>
     </>

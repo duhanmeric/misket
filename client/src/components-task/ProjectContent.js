@@ -4,7 +4,7 @@ import TaskControl from "./TaskControl";
 import { useState, useEffect } from "react";
 import TaskService from "../services/TaskService";
 
-export default function ProjectContent({ selectedProject }) {
+export default function ProjectContent({ selectedContent }) {
   const [tasks, setTasks] = useState([]);
   const [filter, setFilter] = useState("all");
 
@@ -13,7 +13,7 @@ export default function ProjectContent({ selectedProject }) {
     const fetchTasks = async () => {
       const res = await TaskService.getTasks({
         params: {
-          ProjectId: selectedProject ? selectedProject.id : null,
+          ProjectId: selectedContent ? selectedContent.id : null,
         },
       });
       tempArr = res.data;
@@ -24,7 +24,7 @@ export default function ProjectContent({ selectedProject }) {
     };
 
     fetchTasks();
-  }, [selectedProject]);
+  }, [selectedContent]);
 
   const handleFilter = () => {
     if (filter === "all") {
@@ -37,17 +37,17 @@ export default function ProjectContent({ selectedProject }) {
   };
   return (
     <div className="content">
-      {selectedProject ? (
+      {selectedContent ? (
         <>
           <h2 className="project-title">
-            {selectedProject && selectedProject.title}
+            {selectedContent && selectedContent.title}
           </h2>
           <div className="content-list">
             <div className="card-header">
               <TaskInput
                 tasks={tasks}
                 setTasks={setTasks}
-                selectedProject={selectedProject}
+                selectedContent={selectedContent}
               />
             </div>
             <div className="card-body">
@@ -67,6 +67,7 @@ export default function ProjectContent({ selectedProject }) {
                 filter={filter}
                 setFilter={setFilter}
                 setTasks={setTasks}
+                selectedContent={selectedContent.id}
               />
             </div>
           </div>

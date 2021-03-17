@@ -2,8 +2,9 @@ import { Link, Redirect } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../UserProvider";
 import ProjectService from "../services/ProjectService";
+import Profile from "./Profile";
 
-export default function Sidebar({ handleContent }) {
+export default function Sidebar({ handleProject }) {
   const { user, setUser, token, setToken } = useContext(UserContext);
   const [redirect, setRedirect] = useState(null);
   const [projectList, setProjectList] = useState([]);
@@ -86,7 +87,7 @@ export default function Sidebar({ handleContent }) {
             <li
               key={project.id}
               className="project-list-item"
-              onClick={() => handleContent(project)}
+              onClick={() => handleProject(project)}
             >
               <div className="project-info">
                 <div className="project-icon">
@@ -104,13 +105,16 @@ export default function Sidebar({ handleContent }) {
           ))}
           <button
             className="add-project"
-            disabled={projectList.length >= 15}
+            disabled={projectList.length >= 5}
             onClick={() => handleAddProject()}
           >
             <i className="fas fa-plus"></i>
             <div className="add-project-title">Add Project</div>
           </button>
         </ul>
+        <div className="profile-link" onClick={() => handleProject("profile")}>
+          Profile
+        </div>
       </div>
       <div className="logout">
         <i className="fas fa-sign-out-alt"></i>

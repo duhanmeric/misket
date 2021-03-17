@@ -8,7 +8,7 @@ export default function Task({ tasks, task, setTasks, handleFilter }) {
     const tempTasks = tasks.filter((tempTask) => tempTask !== task);
     setTasks(tempTasks);
     await TaskService.deleteTask({
-      id: task.id,
+      deletedId: task.id,
     });
   };
 

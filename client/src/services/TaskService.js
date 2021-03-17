@@ -7,8 +7,17 @@ export default {
   getTasks(a) {
     return Api().get("/task", a);
   },
-  deleteTask({ id }) {
-    return Api().delete(`/task/${id}`);
+  deleteTask(info) {
+    if ("deletedId" in info) {
+      return Api().delete(`/task/${info.deletedId}`, {
+        data: { deletedTaskId: info.deletedId },
+      });
+    } else if ("ProjectId" in info) {
+      return Api().delete(`/task/${info.ProjectId}`, {
+        data: { ProjectId: info.ProjectId },
+      });
+    }
+    console.log(info);
   },
   changeTask(info) {
     if ("checkingTaskId" in info) {

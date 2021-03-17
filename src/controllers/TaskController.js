@@ -54,7 +54,6 @@ module.exports = {
         });
         updatedTask.title = editedTitle;
         await updatedTask.save();
-        // res.send(updatedTask);
       }
     } catch (error) {
       console.log(error);
@@ -63,14 +62,21 @@ module.exports = {
 
   async deleteTask(req, res) {
     try {
-      const { id } = req.params;
-      console.log("id => ", id);
-      const deletedTask = await Task.findOne({
-        where: {
-          id: id,
-        },
-      });
-      await deletedTask.destroy();
+      if ("deletedTaskId" in req.body) {
+        const { deletedTaskId } = req.body;
+        await Task.destroy({
+          where: {
+            id: deletedTaskId,
+          },
+        });
+      } else if ("ProjectId" in req.body) {
+        const { ProjectId } = req.body;
+        await Task.destroy({
+          where: {
+            ProjectId: ProjectId,
+          },
+        });
+      }
     } catch (error) {
       console.log(error);
     }

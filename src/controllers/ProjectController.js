@@ -36,12 +36,11 @@ module.exports = {
   async deleteProject(req, res) {
     try {
       const { ProjectId } = req.body;
-      const deletedProject = await Project.findOne({
+      await Project.destroy({
         where: {
           id: ProjectId,
         },
       });
-      await deletedProject.destroy();
     } catch (error) {
       console.log(error);
     }

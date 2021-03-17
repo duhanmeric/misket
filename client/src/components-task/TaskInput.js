@@ -1,7 +1,7 @@
 import { useState } from "react";
 import TaskService from "../services/TaskService";
 
-export default function TaskInput({ tasks, setTasks, selectedProject }) {
+export default function TaskInput({ tasks, setTasks, selectedContent }) {
   const [inputText, setInputText] = useState("");
 
   const handleInputText = (e) => {
@@ -19,7 +19,7 @@ export default function TaskInput({ tasks, setTasks, selectedProject }) {
         title: trimmed,
         // editing: false,
         completed: false,
-        ProjectId: selectedProject.id,
+        ProjectId: selectedContent.id,
       });
       console.log(res.data);
       setTasks([
