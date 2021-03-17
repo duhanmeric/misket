@@ -17,6 +17,9 @@ export default function ProjectContent({ selectedProject }) {
         },
       });
       tempArr = res.data;
+      tempArr.forEach((t) => {
+        t.editing = false;
+      });
       setTasks(tempArr);
     };
 

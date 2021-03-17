@@ -10,12 +10,12 @@ module.exports = (sequelize, DataTypes) => {
       unique: false,
       allowNull: false,
     },
-    editing: {
-      type: DataTypes.BOOLEAN,
-      unique: false,
-      allowNull: false,
-      defaultValue: false,
-    },
+    // editing: {
+    //   type: DataTypes.BOOLEAN,
+    //   unique: false,
+    //   allowNull: false,
+    //   defaultValue: false,
+    // },
   });
 
   return Task;

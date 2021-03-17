@@ -2,12 +2,12 @@ import Api from "./Api";
 
 export default {
   createPost(credentials) {
-    return Api().post("/create-project", credentials);
+    return Api().post("/project", credentials);
   },
   getPost(a) {
-    return Api().get("/get-projects", a);
+    return Api().get("/project", a);
   },
   deleteProject({ ProjectId }) {
-    return Api().delete("/delete-project", { data: { ProjectId } });
+    return Api().delete("/project", { data: { ProjectId } });
   },
 };

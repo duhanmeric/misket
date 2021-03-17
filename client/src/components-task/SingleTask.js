@@ -26,7 +26,6 @@ export default function Task({ tasks, task, setTasks, handleFilter }) {
   };
 
   const handleEditing = (editingTask) => {
-    console.log(editingTask);
     let updated = tasks.map((task) => {
       if (task.id === editingTask.id) {
         task.editing = true;
@@ -46,9 +45,10 @@ export default function Task({ tasks, task, setTasks, handleFilter }) {
       return task;
     });
     setTasks(updated);
+    console.log("handleNewTitle");
   };
 
-  const handleKeyPress = (e, doneEditing) => {
+  const handleKeyPress = async (e, doneEditing) => {
     if (e.key === "Enter") {
       let updated = tasks.map((task) => {
         if (task.id === doneEditing.id) {
@@ -57,6 +57,10 @@ export default function Task({ tasks, task, setTasks, handleFilter }) {
         return task;
       });
       setTasks(updated);
+      await TaskService.changeTask({
+        editedId: doneEditing.id,
+        editedTitle: doneEditing.title,
+      });
     }
   };
 
@@ -69,6 +73,13 @@ export default function Task({ tasks, task, setTasks, handleFilter }) {
         return task;
       });
       setTasks(updated);
+      tasks.map(async (task) => {
+        await TaskService.changeTask({
+          editedId: task.id,
+          editedTitle: task.title,
+        });
+        return task;
+      });
     }
   };
 
