@@ -5,7 +5,7 @@ import Login from "./components-ui/Login";
 import Register from "./components-ui/Register";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { UserContext } from "./UserProvider";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Verification from "./components-ui/Verification";
 
 const getTokenFromLS = () => {

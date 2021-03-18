@@ -1,5 +1,4 @@
 import { useEffect, useRef, useContext, useState } from "react";
-import axios from "axios";
 import { UserContext } from "../UserProvider";
 import { Redirect } from "react-router-dom";
 import AuthService from "../services/AuthService";

@@ -2,7 +2,6 @@ import { Link, Redirect } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../UserProvider";
 import ProjectService from "../services/ProjectService";
-import Profile from "./Profile";
 
 export default function Sidebar({ handleProject }) {
   const { user, setUser, token, setToken } = useContext(UserContext);
@@ -112,9 +111,6 @@ export default function Sidebar({ handleProject }) {
             <div className="add-project-title">Add Project</div>
           </button>
         </ul>
-        <div className="profile-link" onClick={() => handleProject("profile")}>
-          Profile
-        </div>
       </div>
       <div className="logout">
         <i className="fas fa-sign-out-alt"></i>
