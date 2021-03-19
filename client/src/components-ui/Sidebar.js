@@ -104,7 +104,7 @@ export default function Sidebar({ handleProject }) {
           ))}
           <button
             className="add-project"
-            disabled={projectList.length >= 5}
+            disabled={projectList.length >= 1}
             onClick={() => handleAddProject()}
           >
             <i className="fas fa-plus"></i>

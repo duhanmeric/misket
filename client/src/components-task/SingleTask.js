@@ -1,7 +1,7 @@
 import { useRef, useEffect } from "react";
 import TaskService from "../services/TaskService";
 
-export default function Task({ tasks, task, setTasks, handleFilter }) {
+export default function Task({ tasks, task, setTasks, provided }) {
   let clickRef = useRef();
 
   const handleDelete = async (task) => {
@@ -92,6 +92,9 @@ export default function Task({ tasks, task, setTasks, handleFilter }) {
 
   return (
     <li
+      ref={provided.innerRef}
+      {...provided.draggableProps}
+      {...provided.dragHandleProps}
       className={`list-group-item task-list-item ${
         task.editing ? "editing-task" : ""
       }`}

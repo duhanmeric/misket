@@ -3,6 +3,7 @@ import SingleTask from "./SingleTask";
 import TaskControl from "./TaskControl";
 import { useState, useEffect } from "react";
 import TaskService from "../services/TaskService";
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 export default function ProjectContent({ selectedContent }) {
   const [tasks, setTasks] = useState([]);
@@ -35,6 +36,15 @@ export default function ProjectContent({ selectedContent }) {
       return tasks.filter((task) => task.completed);
     }
   };
+
+  const handleDragEnd = (param) => {
+    let copyList = tasks;
+    const srcI = param.source.index;
+    const desI = param.destination?.index;
+    copyList.splice(desI, 0, copyList.splice(srcI, 1)[0]);
+    setTasks(copyList);
+  };
+
   return (
     <div className="content">
       {selectedContent ? (
@@ -50,18 +60,42 @@ export default function ProjectContent({ selectedContent }) {
                 selectedContent={selectedContent}
               />
             </div>
-            <div className="card-body">
-              <ul className="list-group task-list">
-                {handleFilter().map((task) => (
-                  <SingleTask
-                    task={task}
-                    tasks={tasks}
-                    key={task.id}
-                    setTasks={setTasks}
-                  />
-                ))}
-              </ul>
-            </div>
+            <DragDropContext
+              onDragEnd={(param) => {
+                handleDragEnd(param);
+              }}
+            >
+              <div className="card-body">
+                <Droppable droppableId="droppable-1">
+                  {(provided, _) => (
+                    <ul
+                      className="list-group task-list"
+                      ref={provided.innerRef}
+                      {...provided.droppableProps}
+                    >
+                      {handleFilter().map((task, index) => (
+                        <Draggable
+                          key={task.id}
+                          draggableId={"draggable-" + task.id}
+                          index={index}
+                        >
+                          {(provided, _) => (
+                            <SingleTask
+                              provided={provided}
+                              task={task}
+                              tasks={tasks}
+                              setTasks={setTasks}
+                              index={index}
+                            />
+                          )}
+                        </Draggable>
+                      ))}
+                      {provided.placeholder}
+                    </ul>
+                  )}
+                </Droppable>
+              </div>
+            </DragDropContext>
             <div className="card-footer">
               <TaskControl
                 filter={filter}

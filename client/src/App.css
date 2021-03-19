@@ -197,6 +197,7 @@ body,
   min-height: 50px;
   padding-right: 24px;
   padding-left: 24px;
+  margin: 2px 0;
 }
 
 .task-check {
@@ -266,24 +267,5 @@ body,
   min-width: 75px;
   min-height: 30px;
   outline: none;
-  color: white;
-}
-
-.profile-link {
-  font-size: 18px;
-  padding: 0.2rem 0.5rem;
-  cursor: pointer;
-}
-
-.profile-link:hover {
-  background-color: var(--primary-color);
-}
-
-.profile {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-self: center;
-  background-color: var(--primary-color);
   color: white;
 }
