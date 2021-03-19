@@ -42,6 +42,15 @@ export default function ProjectContent({ selectedContent }) {
     const srcI = param.source.index;
     const desI = param.destination?.index;
     copyList.splice(desI, 0, copyList.splice(srcI, 1)[0]);
+    console.log(param.source, param.destination);
+    for (let i = 0; i < tasks.length; i++) {
+      if (i !== 0 && copyList[i - 1].id > copyList[i].id) {
+        let tempId = copyList[i].id;
+        copyList[i].id = copyList[i - 1].id;
+        copyList[i - 1].id = tempId;
+      }
+    }
+    console.log(copyList);
     setTasks(copyList);
   };
 
@@ -85,7 +94,6 @@ export default function ProjectContent({ selectedContent }) {
                               task={task}
                               tasks={tasks}
                               setTasks={setTasks}
-                              index={index}
                             />
                           )}
                         </Draggable>
