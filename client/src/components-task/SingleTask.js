@@ -45,7 +45,6 @@ export default function Task({ tasks, task, setTasks, provided }) {
       return task;
     });
     setTasks(updated);
-    console.log("handleNewTitle");
   };
 
   const handleKeyPress = async (e, doneEditing) => {

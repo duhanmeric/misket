@@ -34,6 +34,21 @@ module.exports = {
     }
   },
 
+  async changeProject(req, res) {
+    try {
+      const { editedContentId, editedContentTitle } = req.body;
+      const project = await Project.findOne({
+        where: {
+          id: editedContentId,
+        },
+      });
+      project.title = editedContentTitle;
+      await project.save();
+    } catch (error) {
+      console.log(error);
+    }
+  },
+
   async deleteProject(req, res) {
     try {
       const { ProjectId } = req.body;

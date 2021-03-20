@@ -10,4 +10,12 @@ export default {
   deleteProject({ ProjectId }) {
     return Api().delete("/project", { data: { ProjectId } });
   },
+  changeProjectTitle(info) {
+    if ("editedContentId" in info && "editedContentTitle" in info) {
+      return Api().patch(`/project/${info.editedContentId}`, {
+        editedContentId: info.editedContentId,
+        editedContentTitle: info.editedContentTitle,
+      });
+    }
+  },
 };

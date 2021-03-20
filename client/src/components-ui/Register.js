@@ -37,12 +37,14 @@ export default function Login() {
         className="mt-3"
         placeholder="username"
         ref={username}
+        required
       />
       <input
         type="text"
         className="my-3"
         placeholder="password"
         ref={password}
+        required
       />
       <button className="btn btn-dark" onClick={() => handleReq()}>
         Register
