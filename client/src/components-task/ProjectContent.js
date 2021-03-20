@@ -37,20 +37,19 @@ export default function ProjectContent({ selectedContent }) {
     }
   };
 
-  const handleDragEnd = (param) => {
+  const handleDragEnd = async (param) => {
     let copyList = tasks;
     const srcI = param.source.index;
     const desI = param.destination?.index;
     copyList.splice(desI, 0, copyList.splice(srcI, 1)[0]);
-    console.log(param.source, param.destination);
     for (let i = 0; i < tasks.length; i++) {
       if (i !== 0 && copyList[i - 1].id > copyList[i].id) {
-        let tempId = copyList[i].id;
-        copyList[i].id = copyList[i - 1].id;
-        copyList[i - 1].id = tempId;
+        await TaskService.changeTask({
+          sourceSwap: copyList[i],
+          destSwap: copyList[i - 1],
+        });
       }
     }
-    console.log(copyList);
     setTasks(copyList);
   };
 

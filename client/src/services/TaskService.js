@@ -29,6 +29,11 @@ export default {
       return Api().patch(`/task/${info.editedId}`, {
         editedTitle: info.editedTitle,
       });
+    } else if ("sourceSwap" in info && "destSwap" in info) {
+      return Api().patch(`/task/${info.sourceSwap.id}`, {
+        sourceSwap: info.sourceSwap,
+        destSwap: info.destSwap,
+      });
     }
   },
 };

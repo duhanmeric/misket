@@ -54,6 +54,30 @@ module.exports = {
         });
         updatedTask.title = editedTitle;
         await updatedTask.save();
+      } else if ("sourceSwap" in req.body) {
+        const { sourceSwap, destSwap } = req.body;
+        const source = await Task.findOne({
+          where: {
+            id: sourceSwap.id,
+          },
+        });
+
+        const dest = await Task.findOne({
+          where: {
+            id: destSwap.id,
+          },
+        });
+
+        let tempTitle = source.title;
+        source.title = dest.title;
+        dest.title = tempTitle;
+
+        let tempCompleted = source.completed;
+        source.completed = dest.completed;
+        dest.completed = tempCompleted;
+
+        await source.save();
+        await dest.save();
       }
     } catch (error) {
       console.log(error);

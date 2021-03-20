@@ -17,7 +17,6 @@ export default function TaskInput({ tasks, setTasks, selectedContent }) {
       let trimmed = inputText.replace(/\s+/g, " ");
       const res = await TaskService.addTask({
         title: trimmed,
-        // editing: false,
         completed: false,
         ProjectId: selectedContent.id,
       });
