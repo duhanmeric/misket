@@ -7,7 +7,7 @@ export default {
   login(credentials) {
     return Api().post("/login", credentials);
   },
-  verification() {
-    return Api().get("/verification/:ticket");
+  verification({ confirmationTicket }) {
+    return Api().get(`/verification/${confirmationTicket}`);
   },
 };

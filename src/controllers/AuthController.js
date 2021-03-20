@@ -117,6 +117,13 @@ module.exports = {
       });
       activatedUser.isActive = true;
       await activatedUser.save();
+
+      await Ticket.destroy({
+        where: {
+          ticket: confirmationTicket,
+        },
+      });
+
       res.send({ ticket, userInfo: { data: activatedUser.isActive } });
     } catch (error) {
       console.log(error);
