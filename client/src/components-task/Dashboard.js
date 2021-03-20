@@ -5,13 +5,14 @@ import { useState } from "react";
 export default function Dashboard() {
   const [selectedContent, setSelectedContent] = useState(null);
 
-  const handleProject = (content) => {
-    setSelectedContent(content);
+  const handleChange = (newValue) => {
+    console.log(newValue);
+    setSelectedContent(newValue);
   };
 
   return (
     <div className="dashboard">
-      <Sidebar handleProject={handleProject} />
+      <Sidebar selectedContent={selectedContent} handleChange={handleChange} />
       <ProjectContent selectedContent={selectedContent} />
     </div>
   );

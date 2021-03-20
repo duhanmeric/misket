@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../UserProvider";
 import ProjectService from "../services/ProjectService";
 
-export default function Sidebar({ handleProject }) {
+export default function Sidebar({ selectedContent, handleChange }) {
   const { user, setUser, token, setToken } = useContext(UserContext);
   const [redirect, setRedirect] = useState(null);
   const [projectList, setProjectList] = useState([]);
@@ -46,7 +46,6 @@ export default function Sidebar({ handleProject }) {
       title: "untitled",
       UserId: user.id,
     });
-    console.log(res.data);
     setProjectList([
       ...projectList,
       {
@@ -59,6 +58,7 @@ export default function Sidebar({ handleProject }) {
   const handleDeleteProject = async (id) => {
     const tempProjects = projectList.filter((project) => project.id !== id);
     setProjectList(tempProjects);
+    handleChange(null);
     await ProjectService.deleteProject({
       ProjectId: id,
     });
@@ -83,16 +83,20 @@ export default function Sidebar({ handleProject }) {
         <div className="current-projects-title">Projects</div>
         <ul className="list-unstyled mt-1">
           {projectList.map((project) => (
-            <li
-              key={project.id}
-              className="project-list-item"
-              onClick={() => handleProject(project)}
-            >
-              <div className="project-info">
+            <li key={project.id} className="project-list-item">
+              <div
+                className="project-info w-100"
+                onClick={() => handleChange(project)}
+              >
                 <div className="project-icon">
                   <i className="far fa-file-alt"></i>
                 </div>
-                <div className="project-list-title">{project.title}</div>
+                <div
+                  className="project-list-title"
+                  style={{ marginRight: "auto" }}
+                >
+                  {project.title}
+                </div>
               </div>
               <div
                 className="delete-project"
@@ -104,7 +108,7 @@ export default function Sidebar({ handleProject }) {
           ))}
           <button
             className="add-project"
-            disabled={projectList.length >= 1}
+            disabled={projectList.length >= 5}
             onClick={() => handleAddProject()}
           >
             <i className="fas fa-plus"></i>
