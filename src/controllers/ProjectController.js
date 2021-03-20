@@ -1,4 +1,5 @@
 const { Project } = require("../models");
+const { Task } = require("../models");
 
 module.exports = {
   async createProject(req, res) {
@@ -36,6 +37,11 @@ module.exports = {
   async deleteProject(req, res) {
     try {
       const { ProjectId } = req.body;
+      await Task.destroy({
+        where: {
+          ProjectId: ProjectId,
+        },
+      });
       await Project.destroy({
         where: {
           id: ProjectId,
