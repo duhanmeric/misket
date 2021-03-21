@@ -139,12 +139,12 @@ export default function Home() {
               className="bottom-form mx-auto mt-3"
               style={{ maxWidth: "500px" }}
             >
-              <div class="form-group">
+              <div className="form-group">
                 <label htmlFor="message" className="mb-1">
                   Message
                 </label>
                 <textarea
-                  class="form-control"
+                  className="form-control"
                   id="message"
                   rows="6"
                   style={{ resize: "none" }}
