@@ -20,7 +20,7 @@ body,
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: "Roboto Mono", monospace;
+  font-family: "Domine", serif;
 }
 
 /* navbar */
@@ -29,6 +29,7 @@ header {
   background-color: white;
   padding: 0 40px;
   box-shadow: 2px 2px 3px #ccc;
+  font-family: "Roboto Mono", monospace;
 }
 
 .brand {
@@ -159,11 +160,14 @@ header {
 
 .contact-section {
   background-color: white;
-  padding: 5rem 0;
+  padding: 7rem 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.register {
 }
 
 /* dashboard */
