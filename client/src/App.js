@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { UserContext } from "./UserProvider";
 import { useState } from "react";
 import Verification from "./components-ui/Verification";
+import Navbar from "./components-ui/Navbar";
 
 const getTokenFromLS = () => {
   return localStorage.getItem("token");
@@ -25,6 +26,7 @@ function App() {
     <UserContext.Provider value={{ user, setUser, token, setToken }}>
       <Router>
         <div className="App">
+          <Navbar></Navbar>
           <Switch>
             <Route path="/" exact component={Home} />
             <Route path="/login" exact component={Login} />

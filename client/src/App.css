@@ -1,10 +1,12 @@
-:root {
+s:root {
   --primary-color: #2f3437;
   --secondary-color: #eeeeee;
   --third-color: #373c3f;
   --editing: rgb(219, 219, 219);
   --done: rgb(133, 133, 133);
   --filter-active: #373c3f;
+  --nav-color: #5f6368;
+  --color-green: #00ba63;
 }
 
 html,
@@ -18,12 +20,131 @@ body,
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family: "Roboto Mono", monospace;
+}
+
+/* navbar */
+header {
+  min-height: 50px;
+  background-color: white;
+  padding: 0 40px;
+  box-shadow: 2px 2px 3px #ccc;
+}
+
+.brand {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.brand a {
+  font-weight: 500;
+  color: var(--nav-color);
+  text-decoration: none;
+  font-size: 18px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sign-up-link {
+  margin-left: 40px;
+}
+
+.sign-up-link a {
+  color: var(--nav-color);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.auth {
+  height: inherit;
+}
+
+.login-link,
+.sign-up-link {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-link a,
+.sign-up-link a {
+  color: var(--nav-color);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.login-link a::after,
+.sign-up-link a::after {
+  content: "";
+  width: 0%;
+  height: 3px;
+  background-color: green;
+  display: block;
+  position: absolute;
+  bottom: 0;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.login-link a:hover::after,
+.sign-up-link a:hover::after {
+  width: 120%;
 }
 
 /* home */
 .home {
-  color: black;
-  font-size: 24px;
+  font-family: "Domine", serif;
+  width: 100%;
+  height: calc(100% - 50px);
+  margin-top: 50px;
+}
+
+.hero-section {
+  min-height: calc(100vh - 50px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.vector-row {
+  margin-top: 75px;
+}
+
+.hero-title {
+  font-size: 52px;
+}
+
+.hero-subtitle {
+  margin: 20px 0 24px 0;
+  font-size: 18px;
+}
+
+.make-list-btn {
+  min-width: 175px;
+  min-height: 45px;
+  width: 100%;
+  border: none;
+  background-color: #00ba63;
+  color: white;
+  border-radius: 4px;
+}
+
+.vectors {
+  min-width: 300px;
+  max-width: 600px;
 }
 
 /* dashboard */

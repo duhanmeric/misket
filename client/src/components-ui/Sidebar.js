@@ -30,7 +30,7 @@ export default function Sidebar({
     };
 
     fetchProjects();
-  }, []);
+  }, [setProjectList, user]);
 
   if (redirect) {
     return <Redirect to={redirect} />;
@@ -78,6 +78,7 @@ export default function Sidebar({
           <img
             style={{ width: "40px", marginRight: "10px" }}
             src={user.photoURL}
+            alt="pp"
           />
           <div>{user.username}</div>
         </div>
