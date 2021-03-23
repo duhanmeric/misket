@@ -47,7 +47,7 @@ export default function TaskInput({ tasks, setTasks, selectedContent }) {
         }}
       />
       <i
-        className="fas fa-plus"
+        className="fas fa-plus add-task-icon"
         onClick={(e) => {
           addTask(e);
         }}

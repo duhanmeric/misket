@@ -53,19 +53,13 @@ header {
   margin-left: 40px;
 }
 
-.sign-up-link a {
-  color: var(--nav-color);
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: 500;
-}
-
 .auth {
   height: inherit;
 }
 
 .login-link,
-.sign-up-link {
+.sign-up-link,
+.profile-link {
   height: 100%;
   display: flex;
   justify-content: center;
@@ -73,7 +67,8 @@ header {
 }
 
 .login-link a,
-.sign-up-link a {
+.sign-up-link a,
+.profile-link a {
   color: var(--nav-color);
   text-decoration: none;
   font-size: 14px;
@@ -87,7 +82,8 @@ header {
 }
 
 .login-link a::after,
-.sign-up-link a::after {
+.sign-up-link a::after,
+.profile-link a::after {
   content: "";
   width: 0%;
   height: 3px;
@@ -100,7 +96,8 @@ header {
 }
 
 .login-link a:hover::after,
-.sign-up-link a:hover::after {
+.sign-up-link a:hover::after,
+.profile-link a:hover::after {
   width: 120%;
 }
 
@@ -173,32 +170,27 @@ header {
 /* dashboard */
 .dashboard {
   width: 100%;
-  height: 100%;
+  height: calc(100% - 50px);
+  margin-top: 50px;
   display: flex;
-  background-color: var(--primary-color);
+  background-color: white;
 }
 
 .sidebar {
   height: 100%;
   max-width: 275px;
   width: 100%;
-  background-color: var(--third-color);
+  background-color: white;
   padding: 2rem;
   color: var(--secondary-color);
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  /* position: absolute;
-  left: 0;
-  top: 0; */
-}
-
-.logo {
-  font-size: 24px;
+  border-right: 2px solid #eee;
 }
 
 .current-projects {
-  margin-top: 150px;
+  margin-top: 75px;
 }
 
 .current-projects-title {
@@ -230,10 +222,6 @@ header {
   padding: 0.2rem;
 }
 
-.delete-project:hover {
-  background-color: var(--third-color);
-}
-
 .add-project {
   margin-left: 14px;
   display: flex;
@@ -243,17 +231,18 @@ header {
   padding: 0.3rem 0rem !important;
   cursor: pointer;
   background-color: transparent;
-  color: white;
+  color: #212121;
   border: none;
+  transition: all 0.1s ease;
 }
 
 .add-project:hover {
-  background-color: var(--primary-color);
+  background-color: #d9d9d9;
 }
 
 .project-list-item:hover {
   cursor: pointer;
-  background-color: var(--primary-color);
+  background-color: #d9d9d9;
 }
 
 .add-project i {
@@ -284,7 +273,7 @@ header {
 }
 
 .project-title {
-  color: white;
+  color: #212121;
   margin-bottom: 2rem;
 }
 
@@ -293,10 +282,12 @@ header {
   max-width: 400px;
   min-width: 300px;
   width: 100%;
+  border: 1px solid #d9d9d9;
+  /* box-shadow: 1px 1px 3px #e8eae6, -1px -1px 3px #e8eae6; */
 }
 
 .card-header {
-  background-color: var(--secondary-color);
+  background-color: white;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -313,7 +304,7 @@ header {
   width: 95%;
 }
 
-.card-header i {
+.add-task-icon {
   font-size: 20px;
   cursor: pointer;
   color: var(--primary-color);
@@ -323,7 +314,7 @@ header {
   min-height: 375px;
   max-height: 375px;
   overflow: auto;
-  background-color: var(--secondary-color);
+  background-color: white;
 }
 
 .task-list {
@@ -354,7 +345,7 @@ header {
 
 .done {
   font-style: italic;
-  color: var(--done);
+  color: grey;
   text-decoration: line-through;
 }
 
@@ -383,16 +374,16 @@ header {
   justify-content: space-between;
   align-items: center;
   min-height: 50px;
-  background-color: var(--secondary-color);
+  background-color: white;
 }
 
 .filter-group button {
   border: 1px solid;
   background-color: transparent;
-  min-width: 75px;
-  min-height: 30px;
+  min-width: 80px;
+  min-height: 35px;
   outline: none;
-  border-color: var(--primary-color);
+  border-color: #212121;
 }
 
 .filter-group button:nth-of-type(2) {
@@ -400,16 +391,16 @@ header {
 }
 
 .filter-active {
-  background-color: var(--filter-active) !important;
   color: white;
-  border: 1px solid var(--filter-active) !important;
+  background-color: #00ba63 !important;
+  border: 1px solid #00ba63 !important;
 }
 
 .clear-btn {
   border: 1px solid #d63943;
   background-color: #d63943;
-  min-width: 75px;
-  min-height: 30px;
+  min-width: 80px;
+  min-height: 35px;
   outline: none;
   color: white;
 }

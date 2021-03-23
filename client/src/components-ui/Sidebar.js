@@ -70,17 +70,12 @@ export default function Sidebar({
 
   return (
     <div className="sidebar">
-      <div className="logo">
-        <Link to="/">Home</Link>
-      </div>
       {user ? (
-        <div className="d-flex justify-content-start align-items-center">
-          <img
-            style={{ width: "40px", marginRight: "10px" }}
-            src={user.photoURL}
-            alt="pp"
-          />
-          <div>{user.username}</div>
+        <div className="mt-4 d-flex flex-column justify-content-start align-items-center">
+          <img style={{ width: "60px" }} src={user.photoURL} alt="pp" />
+          <div className="mt-3" style={{ fontSize: "18px" }}>
+            {user.username}
+          </div>
         </div>
       ) : null}
 
