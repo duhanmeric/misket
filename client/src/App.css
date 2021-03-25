@@ -1,19 +1,16 @@
-s:root {
-  --primary-color: #2f3437;
-  --secondary-color: #eeeeee;
-  --third-color: #373c3f;
-  --editing: rgb(219, 219, 219);
-  --done: rgb(133, 133, 133);
-  --filter-active: #373c3f;
-  --nav-color: #5f6368;
-  --color-green: #00ba63;
-}
-
 html,
 body,
 #root,
 .App {
   height: 100%;
+}
+
+html.light {
+  --xd: pink;
+}
+
+html.dark {
+  --xd: green;
 }
 
 .App {
@@ -40,7 +37,6 @@ header {
 
 .brand a {
   font-weight: 500;
-  color: var(--nav-color);
   text-decoration: none;
   font-size: 18px;
   height: 100%;
@@ -69,7 +65,6 @@ header {
 .login-link a,
 .sign-up-link a,
 .profile-link a {
-  color: var(--nav-color);
   text-decoration: none;
   font-size: 14px;
   font-weight: 500;
@@ -182,7 +177,6 @@ header {
   width: 100%;
   background-color: white;
   padding: 2rem;
-  color: var(--secondary-color);
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -264,7 +258,6 @@ header {
 /* project */
 
 .content {
-  background-color: var(--primary-color);
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -275,6 +268,16 @@ header {
 .project-title {
   color: #212121;
   margin-bottom: 2rem;
+  font-size: 32px;
+}
+
+.project-editing {
+  color: #212121;
+  margin-bottom: 2rem;
+  border: none;
+  outline: none;
+  font-size: 32px;
+  text-align: center;
 }
 
 .content-list {
@@ -307,7 +310,6 @@ header {
 .add-task-icon {
   font-size: 20px;
   cursor: pointer;
-  color: var(--primary-color);
 }
 
 .card-body {
@@ -403,4 +405,10 @@ header {
   min-height: 35px;
   outline: none;
   color: white;
+}
+
+.dark-btn,
+.light-btn {
+  margin-right: 20px;
+  cursor: pointer;
 }
