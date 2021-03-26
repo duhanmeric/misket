@@ -1,93 +1,66 @@
 import { Link } from "react-router-dom";
-import Girl from "../assets/girl.svg";
-import Boy from "../assets/boy.svg";
+import boy from "../assets/boy.svg";
+import { UserContext } from "../UserProvider";
+import { useContext } from "react";
 
 export default function Home() {
+  const { user } = useContext(UserContext);
+
   return (
     <div className="home">
-      <section className="hero-section container w-75">
-        <div className="hero-row row mx-auto">
+      <section className="hero-section">
+        <div className="row mx-0 hero-row">
           <h1 className="hero-title text-center">
             Unique lists to unique personalities
           </h1>
           <h6 className="hero-subtitle text-center">
             Follow up your tasks with separate lists.
           </h6>
-          <Link to={"/register"} className="make-list-link w-auto mx-auto">
-            <button className="make-list-btn">Make a List</button>
-          </Link>
+          <div className="btn-container d-flex justify-content-center">
+            <Link
+              to={user ? `/dashboard/${user.username}` : "/register"}
+              className="make-btn"
+            >
+              Make a List
+            </Link>
+          </div>
         </div>
-        <div className="vector-row row mx-auto w-100 d-flex justify-content-center">
-          <div className="vectors d-flex justify-content-between">
-            <img src={Girl} alt="girl" />
-            <img src={Boy} alt="girl" />
+        <div className="row mx-0 justify-content-around vector-row">
+          <div className="col-sm-4 col-md-5 text-center">
+            <img src={boy} alt="boy" width="75%" height="75%" />
           </div>
         </div>
       </section>
       <section className="intro-section">
-        <div className="container-w-75">
-          <h3 className="intro-title text-center">Organize your projects</h3>
-          <p
-            className="intro-text w-50 mx-auto text-center mt-3"
-            style={{ fontSize: "18px", lineHeight: "160%" }}
-          >
-            With Misket, you can manage your day easily. Just create a new
-            project and start to type tasks. You can make separate projects to
-            keep track of your management. Wrong order? Just drag the task and
-            drop it on to another task.
-          </p>
-          <div className="row mx-auto justify-content-between mt-5 w-75">
-            <div className="col-sm-4 mx-auto" style={{ maxWidth: "300px" }}>
-              <div className="card">
-                <div
-                  className="card-body d-flex justify-content-around align-items-center flex-column py-4"
-                  style={{
-                    minHeight: "250px",
-                    overflow: "unset",
-                    backgroundColor: "unset",
-                  }}
-                >
-                  <i
-                    className="fas fa-thumbtack"
-                    style={{ fontSize: "48px", color: "#00ba63" }}
-                  ></i>
-                  <div className="card-info text-center">Easy to Use</div>
+        <h3 className="intro-title text-center">Organize your projects</h3>
+        <p className="intro-text text-center w-50 mx-auto">
+          With Misket, you can manage your day easily. Just create a new project
+          and start to type tasks. You can make separate projects to keep track
+          of your management.
+        </p>
+        <div className="container w-75 card-container">
+          <div className="row mx-0">
+            <div className="col-sm-4 card-col">
+              <div className="card home-card h-100">
+                <div className="card-body text-center h-100">
+                  <i className="fas fa-map-pin"></i>
+                  <p className="mb-0">Easy to use</p>
                 </div>
               </div>
             </div>
-            <div className="col-sm-4 mx-auto" style={{ maxWidth: "300px" }}>
-              <div className="card">
-                <div
-                  className="card-body d-flex justify-content-around align-items-center flex-column py-4"
-                  style={{
-                    minHeight: "250px",
-                    overflow: "unset",
-                    backgroundColor: "unset",
-                  }}
-                >
-                  <i
-                    className="fas fa-folder-open"
-                    style={{ fontSize: "48px", color: "#00ba63" }}
-                  ></i>
-                  <div className="card-info text-center">Work separately</div>
+            <div className="col-sm-4 card-col">
+              <div className="card home-card h-100">
+                <div className="card-body text-center h-100">
+                  <i className="fas fa-folder-open"></i>
+                  <p className="mb-0">Work separately</p>
                 </div>
               </div>
             </div>
-            <div className="col-sm-4 mx-auto" style={{ maxWidth: "300px" }}>
-              <div className="card">
-                <div
-                  className="card-body d-flex justify-content-around align-items-center flex-column py-4"
-                  style={{
-                    minHeight: "250px",
-                    overflow: "unset",
-                    backgroundColor: "unset",
-                  }}
-                >
-                  <i
-                    className="fas fa-arrows-alt"
-                    style={{ fontSize: "48px", color: "#00ba63" }}
-                  ></i>
-                  <div className="card-info text-center">Reorder tasks</div>
+            <div className="col-sm-4 card-col">
+              <div className="card home-card h-100">
+                <div className="card-body text-center h-100">
+                  <i className="fas fa-sort"></i>
+                  <p className="mb-0">Reorder</p>
                 </div>
               </div>
             </div>
@@ -95,77 +68,75 @@ export default function Home() {
         </div>
       </section>
       <section className="contact-section">
-        <h1 className="contact-title">Contact</h1>
-        <p className="text-center mb-0 mt-3">
+        <h3 className="contact-title text-center">Contact</h3>
+        <p className="mb-0 text-center contact-text">
           You can contact with me through form down below.
         </p>
-        <p className="mb-5">Misket has developed for educational purposes.</p>
-        <div className="row mx-auto w-75">
-          <form action="#">
+        <p className="mb-0 text-center contact-text">
+          Misket has developed for educational purposes.
+        </p>
+        <form action="#" style={{ marginTop: "30px" }}>
+          <div
+            className="upper d-flex justify-content-center mx-auto"
+            style={{ maxWidth: "600px" }}
+          >
             <div
-              className="upper-form mx-auto d-flex justify-content-between"
-              style={{ maxWidth: "500px" }}
+              className="form-group"
+              style={{ marginRight: "30px", maxWidth: "250px", width: "100%" }}
             >
-              <div className="col-sm-5">
-                <div className="form-group">
-                  <label htmlFor="name" className="mb-1">
-                    Full Name
-                  </label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="name"
-                    aria-describedby="nameHelp"
-                    placeholder="Enter fullname"
-                  />
-                </div>
-              </div>
-              <div className="col-sm-5">
-                <div className="form-group">
-                  <label htmlFor="email" className="mb-1">
-                    Email Adress
-                  </label>
-                  <input
-                    type="email"
-                    className="form-control"
-                    id="email"
-                    aria-describedby="emailHelp"
-                    placeholder="Enter email"
-                  />
-                </div>
-              </div>
+              <label htmlFor="email" className="mb-1">
+                Email address
+              </label>
+              <input
+                type="email"
+                className="form-control"
+                id="email"
+                aria-describedby="email"
+                placeholder="Enter email"
+              />
             </div>
             <div
-              className="bottom-form mx-auto mt-3"
-              style={{ maxWidth: "500px" }}
+              className="form-group"
+              style={{ maxWidth: "250px", width: "100%" }}
             >
-              <div className="form-group">
-                <label htmlFor="message" className="mb-1">
-                  Message
-                </label>
-                <textarea
-                  className="form-control"
-                  id="message"
-                  rows="6"
-                  style={{ resize: "none" }}
-                  placeholder="Enter your message"
-                ></textarea>
-              </div>
+              <label htmlFor="name" className="mb-1">
+                Name
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                id="name"
+                aria-describedby="name"
+                placeholder="Enter name"
+              />
             </div>
-            <div
-              className="btn-container mt-4 mx-auto"
-              style={{ maxWidth: "500px" }}
-            >
-              <button className="make-list-btn">Send</button>
+          </div>
+          <div
+            className="below mx-auto"
+            style={{ maxWidth: "530px", marginTop: "20px" }}
+          >
+            <div className="form-group">
+              <label htmlFor="message" className="mb-1">
+                Message
+              </label>
+              <textarea
+                className="form-control"
+                id="message"
+                rows="5"
+                style={{ resize: "none" }}
+              ></textarea>
             </div>
-          </form>
-        </div>
+          </div>
+          <div
+            className="btn-container d-flex justify-content-center mt-4 mx-auto"
+            style={{ maxWidth: "530px" }}
+          >
+            <button className="send-btn w-100">Send</button>
+          </div>
+        </form>
       </section>
-      <footer
-        style={{ borderTop: "1px solid #ccc", minHeight: "60px" }}
-        className="d-flex justify-content-center align-items-center"
-      >
-        <div className="author text-center">Made with 🧡 by duhanmeric</div>
+      <footer>
+        <div className="author">Made with ❤️ by duhanmeric</div>
       </footer>
     </div>
   );
