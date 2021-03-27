@@ -73,7 +73,7 @@ export default function Sidebar({
       {user ? (
         <div className="mt-4 d-flex flex-column justify-content-start align-items-center">
           <img style={{ width: "60px" }} src={user.photoURL} alt="pp" />
-          <div className="mt-3" style={{ fontSize: "18px" }}>
+          <div className="mt-3 username" style={{ fontSize: "18px" }}>
             {user.username}
           </div>
         </div>

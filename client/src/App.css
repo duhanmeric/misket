@@ -68,7 +68,8 @@ header {
 }
 
 .register-link a,
-.login-link a {
+.login-link a,
+.dashboard-link a {
   text-decoration: none;
   color: var(--header-text);
 }
@@ -227,6 +228,242 @@ footer {
 .login-title,
 .register-title {
   color: var(--intro-text);
+}
+
+/* dashboard */
+
+.dashboard {
+  height: 100vh;
+  padding-top: 50px;
+  background-color: var(--hero-bg);
+  display: flex;
+}
+
+.sidebar {
+  width: 275px;
+  background-color: var(--header-bg);
+  border-top: 1px solid var(--make-list);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.username,
+.current-projects-title,
+.project-icon i,
+.project-list-title,
+.delete-project i {
+  color: var(--header-text);
+}
+
+.current-projects {
+  margin-top: 7rem;
+}
+
+.current-projects-title {
+  font-size: 18px;
+}
+
+.project-list-item {
+  padding: 0.4rem;
+  cursor: pointer;
+}
+
+.project-list-item:hover {
+  background-color: var(--hero-bg);
+}
+
+.project-icon i {
+  margin-right: 10px;
+}
+
+.delete-project i {
+  cursor: pointer;
+}
+
+.project-list-item,
+.project-info {
+  display: flex;
+  align-items: center;
+}
+
+.add-project {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  margin-top: 10px;
+  padding: 0.3rem;
+}
+
+.add-project:hover {
+  background-color: var(--hero-bg);
+}
+
+.add-project i,
+.add-project-title {
+  color: var(--header-text);
+}
+
+.add-project i {
+  margin-right: 10px;
+}
+
+.logout {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+}
+
+.logout i,
+.logout-btn {
+  color: var(--header-text);
+}
+
+.logout i {
+  margin-right: 10px;
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.content-list {
+  width: 75%;
+}
+
+.project-title {
+  color: var(--header-text);
+  margin-bottom: 2rem !important;
+  font-size: 32px;
+}
+
+.project-editing {
+  margin-bottom: 2rem !important;
+  outline: none;
+  background-color: transparent;
+  border: none;
+  color: var(--header-text);
+  font-size: 32px;
+  text-align: center;
+  padding: 0;
+}
+
+.dashboard-header,
+.dashboard-body,
+.dashboard-footer {
+  background-color: var(--intro-bg);
+  max-width: 450px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1rem;
+}
+
+.dashboard-footer {
+  padding: 0.7rem 1rem;
+}
+
+.dashboard-header i {
+  color: var(--make-list);
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.dashboard-header input {
+  flex: 1;
+  height: 40px;
+  background-color: var(--hero-bg);
+  border: none;
+  outline: none;
+  color: var(--header-text);
+  padding-left: 0.4rem;
+  padding-right: 0.4rem;
+}
+
+.dashboard-body ul {
+  width: 100%;
+}
+
+.dashboard-body ul li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 50px;
+}
+
+.task-handle {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.task-check {
+  margin-right: 10px;
+}
+
+.task-control i {
+  margin-left: 10px;
+}
+
+.dashboard-footer button {
+  height: 30px;
+  border: none;
+  outline: none;
+}
+
+.filter-group {
+  max-width: 250px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.filter-group button {
+  min-width: 75px;
+  background-color: transparent;
+  color: var(--header-text);
+  border: 1px solid var(--make-list);
+}
+
+.filter-group button.filter-active {
+  background-color: var(--make-list);
+  color: var(--header-text);
+  border: 1px solid var(--make-list);
+}
+
+.clear-btn {
+  min-width: 75px;
+  background-color: #bb2d3b;
+  color: white;
+}
+
+.dashboard-body ul {
+  height: 350px;
+  overflow: auto;
+  padding-right: 0.3rem;
+}
+
+.input-editing {
+  width: 100%;
+  padding: 0;
+  border: none;
+  height: 30px;
+}
+
+.done {
+  color: gray;
+  font-style: italic;
+  text-decoration: line-through;
 }
 
 @media screen and (max-width: 768px) {

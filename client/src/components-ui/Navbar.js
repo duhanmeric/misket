@@ -22,7 +22,7 @@ export default function Navbar() {
         </div>
         <div className="nav-menu">
           {user ? (
-            <div>
+            <div className="dashboard-link">
               <Link to={`/dashboard/${user.username}`}>Dashboard</Link>
             </div>
           ) : (

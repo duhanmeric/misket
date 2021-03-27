@@ -151,7 +151,7 @@ export default function ProjectContent({
           )}
 
           <div className="content-list">
-            <div className="card-header">
+            <div className="card-header dashboard-header">
               <TaskInput
                 tasks={tasks}
                 setTasks={setTasks}
@@ -163,7 +163,7 @@ export default function ProjectContent({
                 handleDragEnd(param);
               }}
             >
-              <div className="card-body">
+              <div className="card-body dashboard-body">
                 <Droppable droppableId="droppable-1">
                   {(provided, _) => (
                     <ul
@@ -193,7 +193,7 @@ export default function ProjectContent({
                 </Droppable>
               </div>
             </DragDropContext>
-            <div className="card-footer">
+            <div className="card-footer dashboard-footer">
               <TaskControl
                 filter={filter}
                 setFilter={setFilter}
