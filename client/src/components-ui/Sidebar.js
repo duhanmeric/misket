@@ -1,4 +1,4 @@
-import { Link, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../UserProvider";
 import ProjectService from "../services/ProjectService";

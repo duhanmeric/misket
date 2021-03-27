@@ -234,19 +234,19 @@ footer {
 
 .dashboard {
   height: 100vh;
-  padding-top: 50px;
   background-color: var(--hero-bg);
   display: flex;
 }
 
 .sidebar {
-  width: 275px;
+  width: 300px;
   background-color: var(--header-bg);
-  border-top: 1px solid var(--make-list);
   padding: 2rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  position: fixed;
+  height: 100vh;
 }
 
 .username,
@@ -328,11 +328,12 @@ footer {
 }
 
 .content {
-  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-left: 300px;
+  width: 100%;
 }
 
 .content-list {
@@ -466,6 +467,10 @@ footer {
   text-decoration: line-through;
 }
 
+.nav-sidebar {
+  display: none;
+}
+
 @media screen and (max-width: 768px) {
   header {
     padding: 0 20px;
@@ -478,14 +483,13 @@ footer {
   .nav-menu {
     background-color: var(--header-bg);
     height: 100vh;
-    width: 250px;
+    width: 300px;
     position: fixed;
     top: 50px;
     right: -100%;
     padding: 2rem;
     transition: right 0.3s ease;
-    border-top: 1px solid white;
-    border-left: 1px solid white;
+    border-top: 1px solid var(--make-list);
   }
 
   .nav-menu.opened {
@@ -541,6 +545,10 @@ footer {
   .upper .form-group {
     max-width: 530px !important;
   }
+
+  .content {
+    margin-left: 0;
+  }
 }
 
 @media screen and (min-width: 576px) and (max-width: 768px) {
@@ -562,4 +570,7 @@ footer {
   .upper {
     max-width: 530px !important;
   }
+}
+
+@media screen and (min-width: 768px) {
 }
