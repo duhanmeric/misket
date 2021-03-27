@@ -31,6 +31,16 @@ header {
   border-bottom: 1px solid var(--header-shadow);
 }
 
+.bar i {
+  color: white;
+  cursor: pointer;
+  display: none;
+}
+
+.nav-menu {
+  display: block;
+}
+
 .brand {
   height: 100%;
   display: flex;
@@ -60,11 +70,6 @@ header {
 .register-link a,
 .login-link a {
   text-decoration: none;
-  color: var(--header-text);
-}
-
-.dark-btn,
-.light-btn {
   color: var(--header-text);
 }
 
@@ -195,4 +200,102 @@ footer {
 
 .author {
   color: var(--footer-text);
+}
+
+@media screen and (max-width: 768px) {
+  header {
+    padding: 0 20px;
+  }
+
+  .bar i {
+    display: block;
+  }
+
+  .nav-menu {
+    background-color: var(--header-bg);
+    height: 100vh;
+    width: 250px;
+    position: fixed;
+    top: 50px;
+    right: -100%;
+    padding: 2rem;
+    transition: right 0.3s ease;
+    border-top: 1px solid white;
+    border-left: 1px solid white;
+  }
+
+  .nav-menu.opened {
+    right: 0;
+  }
+
+  .nav-control {
+    flex-direction: column;
+  }
+
+  .register-link {
+    margin: 0;
+  }
+
+  .hero-title {
+    font-size: 32px;
+  }
+
+  .make-btn {
+    width: 150px;
+  }
+
+  .intro-title {
+    font-size: 32px;
+  }
+
+  .intro-text {
+    width: 75% !important;
+  }
+
+  .card-col:nth-of-type(2) {
+    margin: 30px 0;
+  }
+
+  .contact-title {
+    font-size: 32px;
+  }
+
+  .contact-text {
+    width: 75% !important;
+    margin: 0 auto;
+  }
+
+  .home-form {
+    width: 75% !important;
+    margin: 0 auto;
+  }
+
+  .upper {
+    flex-direction: column;
+  }
+
+  .upper .form-group {
+    max-width: 530px !important;
+  }
+}
+
+@media screen and (min-width: 576px) and (max-width: 768px) {
+  .hero-title {
+    font-size: 36px;
+  }
+  .card-col:nth-of-type(2) {
+    margin: 0;
+  }
+
+  .card-container {
+    width: 100% !important;
+  }
+
+  .make-btn {
+    width: 200px;
+  }
+
+  .upper {
+    max-width: 530px !important;
+  }
 }

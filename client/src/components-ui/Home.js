@@ -26,7 +26,7 @@ export default function Home() {
           </div>
         </div>
         <div className="row mx-0 justify-content-around vector-row">
-          <div className="col-sm-4 col-md-5 text-center">
+          <div className="col-sm-8 col-md-7 col-lg-5 text-center">
             <img src={boy} alt="boy" width="75%" height="75%" />
           </div>
         </div>
@@ -75,7 +75,7 @@ export default function Home() {
         <p className="mb-0 text-center contact-text">
           Misket has developed for educational purposes.
         </p>
-        <form action="#" style={{ marginTop: "30px" }}>
+        <form action="#" style={{ marginTop: "30px" }} className="home-form">
           <div
             className="upper d-flex justify-content-center mx-auto"
             style={{ maxWidth: "600px" }}
