@@ -204,24 +204,28 @@ footer {
 
 /* login */
 
-.login {
+.login,
+.register {
   height: 100vh;
   padding-top: 50px;
   background-color: var(--hero-bg);
 }
 
-.login .container {
+.login .container,
+.register .container {
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.login-content {
+.login-content,
+.register-content {
   width: 100%;
 }
 
-.login-title {
+.login-title,
+.register-title {
   color: var(--intro-text);
 }
 
