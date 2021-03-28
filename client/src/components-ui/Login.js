@@ -10,6 +10,7 @@ export default function Login() {
   const password = useRef(null);
   const { token, setToken } = useContext(UserContext);
   const [redirect, setRedirect] = useState(null);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     if (token) {
@@ -22,15 +23,23 @@ export default function Login() {
     return <Redirect to={redirect} />;
   }
 
-  const handleReq = async () => {
-    const res = await AuthService.login({
+  const handleReq = () => {
+    AuthService.login({
       userEmail: email.current.value,
       userPassword: password.current.value,
-    });
-    if (res.data.user.isActive) {
-      setToken(res.data.token);
-      localStorage.setItem("token", res.data.token);
-    }
+    })
+      .then((res) => {
+        if (res.data.user.isActive) {
+          setToken(res.data.token);
+          localStorage.setItem("token", res.data.token);
+        }
+      })
+      .catch(function (error) {
+        if (error.response) {
+          let cleanError = JSON.stringify(error.response.data.error);
+          setError(cleanError);
+        }
+      });
   };
 
   return (
@@ -40,6 +49,11 @@ export default function Login() {
         <div className="container w-75">
           <div className="login-content">
             <h1 className="login-title text-center mb-4">Login</h1>
+            {error ? (
+              <div style={{ color: "white" }} className="text-center mb-3">
+                {error}
+              </div>
+            ) : null}
             <div className="form-group mx-auto" style={{ maxWidth: "300px" }}>
               <label htmlFor="email" className="mb-1">
                 Email address

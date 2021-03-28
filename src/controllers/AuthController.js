@@ -15,7 +15,6 @@ jwtSignUser = (user) => {
 module.exports = {
   async login(req, res) {
     try {
-      console.log(req.body);
       const { userEmail, userPassword } = req.body;
       const user = await User.findOne({
         where: {
@@ -24,7 +23,7 @@ module.exports = {
       });
       if (!user) {
         return res.status(403).send({
-          error: "The login info is incorrect user not found",
+          error: "The login info is incorrect. User not found.",
         });
       }
       if (user && !user.isActive) {
@@ -44,7 +43,7 @@ module.exports = {
         token: jwtSignUser(userJson),
       });
     } catch (error) {
-      console.log(error);
+      console.log("backend" + error);
     }
   },
 
