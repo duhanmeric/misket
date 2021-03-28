@@ -22,21 +22,9 @@ export default function Navbar() {
         </div>
         <div className="nav-menu">
           {user ? (
-            <>
-              <div className="dashboard-link">
-                <Link to={`/dashboard/${user.username}`}>Dashboard</Link>
-              </div>
-              <div className="nav-sidebar mt-3">
-                <div className="user-info">
-                  <img
-                    src={user ? user.photoURL : null}
-                    alt="user"
-                    width="50px"
-                  />
-                  <p className="mb-0">{user ? user.username : null}</p>
-                </div>
-              </div>
-            </>
+            <div className="dashboard-link">
+              <Link to={`/dashboard/${user.username}`}>Dashboard</Link>
+            </div>
           ) : (
             <div className="nav-control">
               <div className="login-link">

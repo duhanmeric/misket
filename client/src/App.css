@@ -430,7 +430,8 @@ footer {
 }
 
 .filter-group button {
-  min-width: 75px;
+  max-width: 75px;
+  width: 100%;
   background-color: transparent;
   color: var(--header-text);
   border: 1px solid var(--make-list);
@@ -443,8 +444,10 @@ footer {
 }
 
 .clear-btn {
-  min-width: 75px;
+  max-width: 75px;
+  width: 100%;
   background-color: #bb2d3b;
+  border: 1px solid blue;
   color: white;
 }
 
@@ -548,6 +551,49 @@ footer {
 
   .content {
     margin-left: 0;
+  }
+
+  .sidebar {
+    display: none;
+  }
+
+  .content-list {
+    width: 90%;
+  }
+
+  .filter-group button,
+  .clear-btn {
+    font-size: 14px;
+  }
+
+  .clear-btn {
+    max-width: 64px;
+    padding: 0;
+  }
+
+  .dashboard-header {
+    padding: 0.5rem !important;
+  }
+
+  .dashboard-body {
+    padding: 0.5rem !important;
+  }
+
+  .dashboard-footer {
+    padding: 0.5rem !important;
+  }
+
+  .task-list {
+    padding-right: 0 !important;
+  }
+
+  .input-text {
+    height: 35px !important;
+  }
+
+  .project-title {
+    margin-bottom: 1rem !important;
+    font-size: 28px;
   }
 }
 
