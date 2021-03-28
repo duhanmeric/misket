@@ -132,8 +132,17 @@ export default function Task({ tasks, task, setTasks, provided }) {
           />
         )}
       </div>
-      <div className="task-control">
-        <i className="fas fa-times" onClick={() => handleDelete(task)}></i>
+      <div className="task-control d-flex align-items-center">
+        <i
+          className="far fa-edit"
+          style={{ fontSize: "14px" }}
+          onClick={() => handleEditing(task)}
+        ></i>
+        <i
+          className="fas fa-times"
+          style={{ fontSize: "16px" }}
+          onClick={() => handleDelete(task)}
+        ></i>
       </div>
     </li>
   );

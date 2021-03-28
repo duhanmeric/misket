@@ -342,7 +342,6 @@ footer {
 
 .project-title {
   color: var(--header-text);
-  margin-bottom: 2rem !important;
   font-size: 32px;
 }
 
@@ -474,6 +473,18 @@ footer {
   display: none;
 }
 
+.mobile-sidebar {
+  display: none;
+}
+
+.selected-content i {
+  display: none;
+}
+
+.selected-content {
+  margin-bottom: 2rem;
+}
+
 @media screen and (max-width: 768px) {
   header {
     padding: 0 20px;
@@ -592,8 +603,74 @@ footer {
   }
 
   .project-title {
-    margin-bottom: 1rem !important;
     font-size: 28px;
+  }
+
+  .project-editing {
+    font-size: 28px;
+    margin-bottom: 1rem !important;
+    font-weight: 500;
+    height: 35px;
+  }
+
+  .mobile-sidebar {
+    background-color: var(--header-bg);
+    min-height: 50px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+  }
+
+  .mb-logo a {
+    text-decoration: none;
+    font-size: 18px;
+    color: var(--header-text);
+  }
+
+  .dashboard {
+    flex-direction: column;
+  }
+
+  .content {
+    height: 100%;
+  }
+
+  .mb-sidebar-content {
+    background-color: var(--intro-bg);
+    border-top: 1px solid var(--make-list);
+    height: calc(100vh - 50px);
+    position: fixed;
+    top: 50px;
+    right: -100%;
+    z-index: 999;
+    width: 275px;
+    transition: right 0.3s ease;
+    padding: 1rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .mb-sidebar-content.opened {
+    right: 0;
+  }
+
+  .selected-content {
+    width: 90%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem !important;
+    max-width: 450px;
+  }
+
+  .selected-content i {
+    color: var(--header-text);
+    position: absolute;
+    right: 4px;
+    display: block;
   }
 }
 

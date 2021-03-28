@@ -12,17 +12,11 @@ const getTokenFromLS = () => {
   return localStorage.getItem("token");
 };
 
-const getUserFromLS = () => {
-  const userLS = localStorage.getItem("user");
-  return JSON.parse(userLS);
-};
-
 function App() {
-  const [user, setUser] = useState(getUserFromLS);
   const [token, setToken] = useState(getTokenFromLS);
 
   return (
-    <UserContext.Provider value={{ user, setUser, token, setToken }}>
+    <UserContext.Provider value={{ token, setToken }}>
       <Router>
         <div className="App">
           <Switch>

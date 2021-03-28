@@ -1,5 +1,6 @@
 import ProjectContent from "./ProjectContent";
-import Sidebar from "../components-ui/Sidebar";
+import DesktopSidebar from "../components-ui/DesktopSidebar";
+import MobileSidebar from "../components-ui/MobileSidebar";
 import { useState } from "react";
 
 export default function Dashboard() {
@@ -12,12 +13,18 @@ export default function Dashboard() {
 
   return (
     <div className="dashboard">
-      <Sidebar
+      <DesktopSidebar
         selectedContent={selectedContent}
         handleSelected={handleSelected}
         projectList={projectList}
         setProjectList={setProjectList}
       />
+      <MobileSidebar
+        selectedContent={selectedContent}
+        handleSelected={handleSelected}
+        projectList={projectList}
+        setProjectList={setProjectList}
+      ></MobileSidebar>
       <ProjectContent
         selectedContent={selectedContent}
         handleSelected={handleSelected}

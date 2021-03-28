@@ -129,12 +129,18 @@ export default function ProjectContent({
       {selectedContent ? (
         <>
           {!selectedContent.editing && selectedContent ? (
-            <h2
-              className="project-title"
-              onDoubleClick={() => handleEditing(selectedContent)}
-            >
-              {selectedContent.title}
-            </h2>
+            <div className="selected-content">
+              <h2
+                className="project-title mb-0"
+                onDoubleClick={() => handleEditing(selectedContent)}
+              >
+                {selectedContent.title}
+              </h2>
+              <i
+                className="far fa-edit"
+                onClick={() => handleEditing(selectedContent)}
+              ></i>
+            </div>
           ) : (
             <input
               value={selectedContent.title}

@@ -3,19 +3,20 @@ import AuthService from "../services/AuthService";
 import { UserContext } from "../UserProvider";
 import { Redirect } from "react-router-dom";
 import Navbar from "./Navbar";
+import { decode } from "jsonwebtoken";
 
 export default function Login() {
   const email = useRef(null);
   const password = useRef(null);
   const username = useRef(null);
-  const { user } = useContext(UserContext);
+  const { token } = useContext(UserContext);
   const [redirect, setRedirect] = useState(null);
 
   useEffect(() => {
-    if (user) {
-      setRedirect(`/dashboard/${user.username}`);
+    if (token) {
+      setRedirect(`/dashboard/${decode(token).username}`);
     }
-  }, [user]);
+  }, [token]);
 
   if (redirect) {
     return <Redirect to={redirect} />;

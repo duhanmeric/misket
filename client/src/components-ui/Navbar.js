@@ -1,9 +1,10 @@
+import { decode } from "jsonwebtoken";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { UserContext } from "../UserProvider";
 
 export default function Navbar() {
-  const { user } = useContext(UserContext);
+  const { token } = useContext(UserContext);
 
   const handleBar = () => {
     let item = document.querySelector(".nav-menu");
@@ -21,9 +22,9 @@ export default function Navbar() {
           <i className="fas fa-bars"></i>
         </div>
         <div className="nav-menu">
-          {user ? (
+          {token ? (
             <div className="dashboard-link">
-              <Link to={`/dashboard/${user.username}`}>Dashboard</Link>
+              <Link to={`/dashboard/${decode(token).username}`}>Dashboard</Link>
             </div>
           ) : (
             <div className="nav-control">

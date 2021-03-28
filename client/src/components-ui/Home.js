@@ -3,9 +3,10 @@ import boy from "../assets/boy.svg";
 import { UserContext } from "../UserProvider";
 import { useContext } from "react";
 import Navbar from "./Navbar";
+import { decode } from "jsonwebtoken";
 
 export default function Home() {
-  const { user } = useContext(UserContext);
+  const { token } = useContext(UserContext);
 
   return (
     <>
@@ -21,7 +22,9 @@ export default function Home() {
             </h6>
             <div className="btn-container d-flex justify-content-center">
               <Link
-                to={user ? `/dashboard/${user.username}` : "/register"}
+                to={
+                  token ? `/dashboard/${decode(token).username}` : "/register"
+                }
                 className="make-btn"
               >
                 Make a List

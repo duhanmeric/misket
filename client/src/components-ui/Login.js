@@ -3,19 +3,20 @@ import { UserContext } from "../UserProvider";
 import { Redirect } from "react-router-dom";
 import AuthService from "../services/AuthService";
 import Navbar from "./Navbar";
+import { decode } from "jsonwebtoken";
 
 export default function Login() {
   const email = useRef(null);
   const password = useRef(null);
-  const { user, setUser, setToken } = useContext(UserContext);
+  const { token, setToken } = useContext(UserContext);
   const [redirect, setRedirect] = useState(null);
 
   useEffect(() => {
-    if (user) {
-      console.log(user);
+    if (token) {
+      const user = decode(token);
       setRedirect(`/dashboard/${user.username}`);
     }
-  }, [user]);
+  }, [token]);
 
   if (redirect) {
     return <Redirect to={redirect} />;
@@ -26,20 +27,9 @@ export default function Login() {
       userEmail: email.current.value,
       userPassword: password.current.value,
     });
-    console.log(res.data.token, res.data.user);
     if (res.data.user.isActive) {
-      setUser(res.data.user);
       setToken(res.data.token);
       localStorage.setItem("token", res.data.token);
-      localStorage.setItem(
-        "user",
-        JSON.stringify({
-          id: res.data.user.id,
-          email: res.data.user.email,
-          username: res.data.user.username,
-          photoURL: res.data.user.photoURL,
-        })
-      );
     }
   };
 

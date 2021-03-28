@@ -2,27 +2,28 @@ import { Redirect } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../UserProvider";
 import ProjectService from "../services/ProjectService";
+import { decode } from "jsonwebtoken";
 
-export default function Sidebar({
+export default function DesktopSidebar({
   handleSelected,
   setProjectList,
   projectList,
 }) {
-  const { user, setUser, token, setToken } = useContext(UserContext);
+  const { token, setToken } = useContext(UserContext);
   const [redirect, setRedirect] = useState(null);
 
   useEffect(() => {
-    if (!user) {
+    if (!token) {
       setRedirect("/");
     }
-  }, [user]);
+  }, [token]);
 
   useEffect(() => {
     let tempArr = [];
     const fetchProjects = async () => {
       const res = await ProjectService.getPost({
         params: {
-          UserId: user ? user.id : null,
+          UserId: token ? decode(token).id : null,
         },
       });
       tempArr = res.data;
@@ -30,24 +31,21 @@ export default function Sidebar({
     };
 
     fetchProjects();
-  }, [setProjectList, user]);
+  }, [setProjectList, token]);
 
   if (redirect) {
     return <Redirect to={redirect} />;
   }
 
   const handleLogOut = () => {
-    setUser(null);
     setToken(null);
-    console.log(user, token);
-    localStorage.removeItem("user");
     localStorage.removeItem("token");
   };
 
   const handleAddProject = async () => {
     const res = await ProjectService.createPost({
       title: "untitled",
-      UserId: user.id,
+      UserId: decode(token).id,
     });
     setProjectList([
       ...projectList,
@@ -70,11 +68,15 @@ export default function Sidebar({
 
   return (
     <div className="sidebar">
-      {user ? (
+      {token ? (
         <div className="mt-4 d-flex flex-column justify-content-start align-items-center">
-          <img style={{ width: "60px" }} src={user.photoURL} alt="pp" />
+          <img
+            style={{ width: "60px" }}
+            src={decode(token).photoURL}
+            alt="pp"
+          />
           <div className="mt-3 username" style={{ fontSize: "18px" }}>
-            {user.username}
+            {decode(token).username}
           </div>
         </div>
       ) : null}
