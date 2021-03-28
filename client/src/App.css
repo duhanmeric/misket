@@ -485,6 +485,10 @@ footer {
   margin-bottom: 2rem;
 }
 
+.task-control .fa-edit {
+  display: none;
+}
+
 @media screen and (max-width: 768px) {
   header {
     padding: 0 20px;
@@ -670,6 +674,11 @@ footer {
     color: var(--header-text);
     position: absolute;
     right: 4px;
+    display: block;
+    cursor: pointer;
+  }
+
+  .task-control .fa-edit {
     display: block;
   }
 }

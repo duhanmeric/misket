@@ -11,12 +11,22 @@ export default function DesktopSidebar({
 }) {
   const { token, setToken } = useContext(UserContext);
   const [redirect, setRedirect] = useState(null);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     if (!token) {
       setRedirect("/");
     }
   }, [token]);
+
+  useEffect(() => {
+    if (projectList.length > 4) {
+      setError("Maximum 5 projects allowed.");
+      setTimeout(function () {
+        setError("");
+      }, 3000);
+    }
+  }, [projectList.length]);
 
   useEffect(() => {
     let tempArr = [];
@@ -83,6 +93,7 @@ export default function DesktopSidebar({
 
       <div className="current-projects">
         <div className="current-projects-title">Projects</div>
+        {error ? <div style={{ color: "red" }}>{error}</div> : null}
         <ul className="list-unstyled mt-1">
           {projectList.map((project) => (
             <li key={project.id} className="project-list-item">
@@ -110,7 +121,7 @@ export default function DesktopSidebar({
           ))}
           <button
             className="add-project"
-            disabled={projectList.length >= 5}
+            disabled={projectList.length > 4}
             onClick={() => handleAddProject()}
           >
             <i className="fas fa-plus"></i>
