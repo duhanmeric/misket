@@ -80,11 +80,10 @@ export default function DesktopSidebar({
     <div className="sidebar">
       {token ? (
         <div className="mt-4 d-flex flex-column justify-content-start align-items-center">
-          <img
-            style={{ width: "60px" }}
-            src={decode(token).photoURL}
-            alt="pp"
-          />
+          <i
+            className="fas fa-user"
+            style={{ fontSize: "32px", color: "white" }}
+          ></i>
           <div className="mt-3 username" style={{ fontSize: "18px" }}>
             {decode(token).username}
           </div>

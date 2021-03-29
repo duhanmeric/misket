@@ -12,13 +12,6 @@ export default function Home() {
   const name = useRef(null);
   const message = useRef(null);
 
-  const handleContact = async () => {
-    const res = await AuthService.contact({
-      email: email.current.value,
-      name: name.current.value,
-      message: message.current.value,
-    });
-  };
   return (
     <>
       <Navbar></Navbar>
@@ -87,84 +80,16 @@ export default function Home() {
         <section className="contact-section">
           <h3 className="contact-title text-center">Contact</h3>
           <p className="mb-0 text-center contact-text">
-            You can contact with me through form down below.
+            You can contact with me through link down below.
           </p>
           <p className="mb-0 text-center contact-text">
-            Misket has developed for educational purposes.
+            <a
+              href="mailto:duhanmeric@gmail.com"
+              style={{ color: "#eee", textDecoration: "none" }}
+            >
+              duhanmeric@gmail.com
+            </a>
           </p>
-          <form
-            style={{ marginTop: "30px" }}
-            className="home-form"
-            onSubmit={() => handleContact()}
-          >
-            <div
-              className="upper d-flex justify-content-center mx-auto"
-              style={{ maxWidth: "600px" }}
-            >
-              <div
-                className="form-group"
-                style={{
-                  marginRight: "30px",
-                  maxWidth: "250px",
-                  width: "100%",
-                }}
-              >
-                <label htmlFor="email" className="mb-1">
-                  Email address
-                </label>
-                <input
-                  type="email"
-                  className="form-control"
-                  id="email"
-                  aria-describedby="email"
-                  placeholder="Enter email"
-                  required
-                  ref={email}
-                />
-              </div>
-              <div
-                className="form-group"
-                style={{ maxWidth: "250px", width: "100%" }}
-              >
-                <label htmlFor="name" className="mb-1">
-                  Name
-                </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="name"
-                  aria-describedby="name"
-                  placeholder="Enter name"
-                  required
-                  ref={name}
-                />
-              </div>
-            </div>
-            <div
-              className="below mx-auto"
-              style={{ maxWidth: "530px", marginTop: "20px" }}
-            >
-              <div className="form-group">
-                <label htmlFor="message" className="mb-1">
-                  Message
-                </label>
-                <textarea
-                  className="form-control"
-                  id="message"
-                  rows="5"
-                  style={{ resize: "none" }}
-                  required
-                  ref={message}
-                ></textarea>
-              </div>
-            </div>
-            <div
-              className="btn-container d-flex justify-content-center mt-4 mx-auto"
-              style={{ maxWidth: "530px" }}
-            >
-              <button className="send-btn w-100">Send</button>
-            </div>
-          </form>
         </section>
         <footer>
           <div className="author">Made with ❤️ by duhanmeric</div>

@@ -30,12 +30,6 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         unique: true,
       },
-      photoURL: {
-        type: DataTypes.STRING,
-        allowNull: true,
-        unique: false,
-        defaultValue: "https://i.hizliresim.com/AXt9tf.png",
-      },
       isActive: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
