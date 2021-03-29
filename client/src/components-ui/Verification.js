@@ -5,11 +5,11 @@ import AuthService from "../services/AuthService";
 export default function Verification() {
   const [isActivated, setIsActivated] = useState(false);
   let { confirmationTicket } = useParams();
+  console.log(confirmationTicket);
   useEffect(() => {
     AuthService.verification({
       confirmationTicket: confirmationTicket,
     }).then((res) => {
-      console.log(res.data);
       setIsActivated(res.data.userInfo.data);
     });
   });

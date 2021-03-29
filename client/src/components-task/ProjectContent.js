@@ -134,7 +134,9 @@ export default function ProjectContent({
                 className="project-title mb-0"
                 onDoubleClick={() => handleEditing(selectedContent)}
               >
-                {selectedContent.title}
+                {selectedContent.title.length > 15
+                  ? selectedContent.title.substring(0, 14) + "..."
+                  : selectedContent.title}
               </h2>
               <i
                 className="far fa-edit"

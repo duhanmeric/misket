@@ -1,13 +1,24 @@
 import { Link } from "react-router-dom";
 import boy from "../assets/boy.svg";
 import { UserContext } from "../UserProvider";
-import { useContext } from "react";
+import { useContext, useRef } from "react";
 import Navbar from "./Navbar";
 import { decode } from "jsonwebtoken";
+import AuthService from "../services/AuthService";
 
 export default function Home() {
   const { token } = useContext(UserContext);
+  const email = useRef(null);
+  const name = useRef(null);
+  const message = useRef(null);
 
+  const handleContact = async () => {
+    const res = await AuthService.contact({
+      email: email.current.value,
+      name: name.current.value,
+      message: message.current.value,
+    });
+  };
   return (
     <>
       <Navbar></Navbar>
@@ -81,7 +92,11 @@ export default function Home() {
           <p className="mb-0 text-center contact-text">
             Misket has developed for educational purposes.
           </p>
-          <form action="#" style={{ marginTop: "30px" }} className="home-form">
+          <form
+            style={{ marginTop: "30px" }}
+            className="home-form"
+            onSubmit={() => handleContact()}
+          >
             <div
               className="upper d-flex justify-content-center mx-auto"
               style={{ maxWidth: "600px" }}
@@ -103,6 +118,8 @@ export default function Home() {
                   id="email"
                   aria-describedby="email"
                   placeholder="Enter email"
+                  required
+                  ref={email}
                 />
               </div>
               <div
@@ -118,6 +135,8 @@ export default function Home() {
                   id="name"
                   aria-describedby="name"
                   placeholder="Enter name"
+                  required
+                  ref={name}
                 />
               </div>
             </div>
@@ -134,6 +153,8 @@ export default function Home() {
                   id="message"
                   rows="5"
                   style={{ resize: "none" }}
+                  required
+                  ref={message}
                 ></textarea>
               </div>
             </div>

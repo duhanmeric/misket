@@ -4,6 +4,7 @@ const jwt = require("jsonwebtoken");
 const config = require("../config/config");
 const crypto = require("crypto");
 const nodemailer = require("nodemailer");
+require("dotenv").config();
 
 jwtSignUser = (user) => {
   const ONE_WEEK = 60 * 60 * 24 * 7;
@@ -74,7 +75,7 @@ module.exports = {
         secure: false,
         auth: {
           user: "duhanmeric@gmail.com",
-          pass: "X25dhb3sq.",
+          pass: process.env.MAIL_PASS,
         },
       });
 
@@ -87,6 +88,40 @@ module.exports = {
           '<p>Click <a href="http://localhost:3000/verification/' +
           confirmationTicket +
           '">here</a> to activate your account.</p>',
+      };
+
+      transporter.sendMail(mailOptions, function (error, info) {
+        if (error) {
+          console.log(error);
+        } else {
+          console.log("Email sent: " + info.response);
+        }
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  },
+
+  async contact(req, res) {
+    try {
+      const { email, name, message } = req.body;
+      console.log(email, name, message);
+
+      const transporter = nodemailer.createTransport({
+        service: "gmail",
+        port: 465,
+        secure: false,
+        auth: {
+          user: "duhanmeric@gmail.com",
+          pass: process.env.MAIL_PASS,
+        },
+      });
+
+      const mailOptions = {
+        from: email,
+        to: "duhanmeric@gmail.com",
+        subject: "Contact from Misketv2",
+        text: message + " " + name,
       };
 
       transporter.sendMail(mailOptions, function (error, info) {
