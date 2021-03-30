@@ -11,6 +11,7 @@ export default function Login() {
   const username = useRef(null);
   const { token } = useContext(UserContext);
   const [redirect, setRedirect] = useState(null);
+  const [ticketMessage, setTicketMessage] = useState(null);
 
   useEffect(() => {
     if (token) {
@@ -22,12 +23,23 @@ export default function Login() {
     return <Redirect to={redirect} />;
   }
 
-  const handleReq = () => {
-    AuthService.register({
+  const handleReq = async () => {
+    await AuthService.register({
       email: email.current.value,
       username: username.current.value,
       password: password.current.value,
-    });
+    })
+      .then((res) => {
+        if (res) {
+          setTicketMessage("Email has been sent");
+        }
+      })
+      .catch(function (error) {
+        if (error.response) {
+          let cleanError = JSON.stringify(error.response.data.error);
+          setTicketMessage(cleanError);
+        }
+      });
   };
 
   return (
@@ -37,7 +49,10 @@ export default function Login() {
       <div className="register">
         <div className="container w-75">
           <div className="register-content">
-            <h1 className="register-title text-center mb-5">Sign In</h1>
+            <h1 className="register-title text-center mb-4">Sign In</h1>
+            <p className="text-center" style={{ color: "#eee" }}>
+              {ticketMessage ? ticketMessage : null}
+            </p>
             <div className="form-group mx-auto" style={{ maxWidth: "300px" }}>
               <label htmlFor="email" className="mb-1">
                 Email address

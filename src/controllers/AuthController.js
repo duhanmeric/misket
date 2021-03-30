@@ -98,41 +98,9 @@ module.exports = {
         }
       });
     } catch (error) {
-      console.log(error);
-    }
-  },
-
-  async contact(req, res) {
-    try {
-      const { email, name, message } = req.body;
-      console.log(email, name, message);
-
-      const transporter = nodemailer.createTransport({
-        service: "gmail",
-        port: 465,
-        secure: false,
-        auth: {
-          user: "duhanmeric@gmail.com",
-          pass: process.env.MAIL_PASS,
-        },
+      return res.status(403).send({
+        error: "Not Unique",
       });
-
-      const mailOptions = {
-        from: email,
-        to: "duhanmeric@gmail.com",
-        subject: "Contact from Misketv2",
-        text: message + " " + name,
-      };
-
-      transporter.sendMail(mailOptions, function (error, info) {
-        if (error) {
-          console.log(error);
-        } else {
-          console.log("Email sent: " + info.response);
-        }
-      });
-    } catch (error) {
-      console.log(error);
     }
   },
 

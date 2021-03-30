@@ -10,7 +10,4 @@ export default {
   verification({ confirmationTicket }) {
     return Api().get(`/verification/${confirmationTicket}`);
   },
-  contact({ email, name, message }) {
-    return Api().post("/contact", { email, name, message });
-  },
 };
