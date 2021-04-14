@@ -74,13 +74,13 @@ module.exports = {
         port: 587,
         secure: false,
         auth: {
-          user: "duhanmeric@gmail.com",
+          user: "krokenn34@gmail.com",
           pass: process.env.MAIL_PASS || "X25dhb3sq.",
         },
       });
 
       const mailOptions = {
-        from: "duhanmeric@gmail.com",
+        from: "krokenn34@gmail.com",
         to: email,
         subject: "Account Verification",
         text: "That was easy!",
