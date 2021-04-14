@@ -1,16 +1,12 @@
 import { Link } from "react-router-dom";
 import boy from "../assets/boy.svg";
 import { UserContext } from "../UserProvider";
-import { useContext, useRef } from "react";
+import { useContext } from "react";
 import Navbar from "./Navbar";
 import { decode } from "jsonwebtoken";
-import AuthService from "../services/AuthService";
 
 export default function Home() {
   const { token } = useContext(UserContext);
-  const email = useRef(null);
-  const name = useRef(null);
-  const message = useRef(null);
 
   return (
     <>
