@@ -4,7 +4,7 @@ module.exports = {
   port: process.env.PORT,
   database: process.env.DB_NAME,
   user: process.env.DB_USER,
-  password: process.env.PASSWORD,
+  password: process.env.PASS,
   options: {
     dialect: "mysql",
     host: process.env.HOST,
