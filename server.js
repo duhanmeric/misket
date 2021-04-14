@@ -9,9 +9,7 @@ app.use(cors());
 
 require("./src/routes")(app);
 
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
-}
+app.use(express.static("client/build"));
 
 sequelize.sync().then(() => {
   app.listen(config.port);
