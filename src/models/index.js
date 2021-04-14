@@ -4,12 +4,10 @@ const Sequelize = require("sequelize");
 const config = require("../config/config");
 const db = {};
 
-const sequelize = new Sequelize(
-  config.database,
-  config.user,
-  config.password,
-  config.options
-);
+const sequelize = new Sequelize(config.database, config.user, config.password, {
+  host: config.options.host,
+  dialect: config.options.dialect,
+});
 
 fs.readdirSync(__dirname)
   .filter((file) => file !== "index.js")
