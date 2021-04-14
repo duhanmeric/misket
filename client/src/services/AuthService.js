@@ -8,6 +8,7 @@ export default {
     return Api().post("/login", credentials);
   },
   verification({ confirmationTicket }) {
+    console.log(confirmationTicket);
     return Api().get(`/verification/${confirmationTicket}`);
   },
 };
