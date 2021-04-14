@@ -15,5 +15,5 @@ if (process.env.NODE_ENV === "production") {
 
 sequelize.sync().then(() => {
   app.listen(config.port);
-  console.log(`server started on port ${config.port}`);
+  console.log(`server up and started on port ${config.port}`);
 });
