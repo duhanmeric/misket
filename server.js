@@ -10,7 +10,10 @@ app.use(cors());
 
 require("./src/routes")(app);
 
-app.use(express.static(path.join(__dirname, "./build")));
+app.get("/", (req, res) => {
+  app.use(express.static(path.join(__dirname, "./build")));
+  res.render(path.join(__dirname, "./build/index.html"));
+});
 
 sequelize.sync().then(() => {
   app.listen(config.port);
