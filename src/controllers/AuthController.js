@@ -85,7 +85,7 @@ module.exports = {
         subject: "Account Verification",
         text: "That was easy!",
         html:
-          '<p>Click <a href="http://localhost:3000/verification/' +
+          '<p>Click <a href="https://misket.herokuapp.com/verification/' +
           confirmationTicket +
           '">here</a> to activate your account.</p>',
       };
