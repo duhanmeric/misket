@@ -75,7 +75,7 @@ module.exports = {
         secure: false,
         auth: {
           user: "krokenn34@gmail.com",
-          pass: process.env.MAIL_PASS || "X25dhb3sq.",
+          pass: process.env.MAIL_PASS,
         },
       });
 
