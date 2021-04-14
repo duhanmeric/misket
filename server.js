@@ -26,7 +26,7 @@ app.get("/", (req, res) => {
   res.render(path.join(__dirname, "/build/index.html"));
 });
 
-sequelize.sync().then(() => {
+sequelize.sync({ force: true }).then(() => {
   app.listen(config.port);
   console.log(`server up and started on port ${config.port}`);
 });
